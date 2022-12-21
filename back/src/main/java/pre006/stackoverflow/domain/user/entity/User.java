@@ -9,12 +9,11 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 @Data
-@Entity(name = "USER")
+@Entity(name = "USERS")
 public class User extends BaseTime {
     @Id
     private Long userId;
@@ -30,6 +29,8 @@ public class User extends BaseTime {
 
     @Column(columnDefinition = "TEXT")
     private String description;
+
+    private String location;
 
     @OneToMany(mappedBy = "user")
     private List<Question> questionList = new ArrayList<>();
