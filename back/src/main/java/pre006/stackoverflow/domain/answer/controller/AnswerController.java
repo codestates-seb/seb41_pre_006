@@ -1,4 +1,4 @@
-package pre006.stackoverflow.domain.answer;
+package pre006.stackoverflow.domain.answer.controller;
 
 
 import org.springframework.http.ResponseEntity;

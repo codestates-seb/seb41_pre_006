@@ -12,6 +12,7 @@ import javax.persistence.*;
 public class Answer extends BaseTime {
 
     @Id
+    @GeneratedValue
     private Long answerId;
 
     @Column(columnDefinition = "TEXT", nullable = false)
