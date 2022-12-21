@@ -15,4 +15,5 @@ public class User {
     private String location;
     private LocalDateTime modifiedAt;
     private LocalDateTime createdAt;
+    // 테스트 수정입니다.
 }
