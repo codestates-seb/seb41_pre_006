@@ -14,13 +14,13 @@ import pre006.stackoverflow.domain.question.service.QuestionService;
 @Slf4j
 public class QuestionController {
 
-    private final QuestionService questionService;
-    private final QuestionMapper questionMapper;
+    // private final QuestionService questionService;
+    // private final QuestionMapper questionMapper;
 
-    public QuestionController(QuestionService questionService, QuestionMapper questionMapper) {
-        this.questionService = questionService;
-        this.questionMapper = questionMapper;
-    }
+    // public QuestionController(QuestionService questionService, QuestionMapper questionMapper) {
+    //     this.questionService = questionService;
+    //     this.questionMapper = questionMapper;
+    // }
 
     //post mapping
     @PostMapping

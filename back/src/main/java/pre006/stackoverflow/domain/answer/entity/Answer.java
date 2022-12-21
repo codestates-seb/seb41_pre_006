@@ -2,13 +2,10 @@ package pre006.stackoverflow.domain.answer.entity;
 
 import lombok.Data;
 import pre006.stackoverflow.domain.audit.BaseTime;
+import pre006.stackoverflow.domain.question.entity.Question;
 import pre006.stackoverflow.domain.user.entity.User;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import java.time.LocalDateTime;
+import javax.persistence.*;
 
 @Data
 @Entity(name = "ANSWER")
@@ -21,6 +18,10 @@ public class Answer extends BaseTime {
     private String content;
 
     @ManyToOne
+    @JoinColumn(name = "user_id")
     private User user;
 
+    @ManyToOne
+    @JoinColumn(name = "question_id")
+    private Question question;
 }
