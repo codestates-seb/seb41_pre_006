@@ -1,5 +1,6 @@
 package pre006.stackoverflow.global.exceptionHandler;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -15,6 +16,7 @@ import java.util.NoSuchElementException;
  * 이를 본 클래스가 잡아서 처리한다.
  */
 @RestControllerAdvice
+@Slf4j
 public class GlobalExceptionAdvice {
 
     /**
@@ -24,6 +26,12 @@ public class GlobalExceptionAdvice {
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler({NoSuchElementException.class, EmptyResultDataAccessException.class})
     public ErrorResult handleNoSuchElementException(RuntimeException e) {
+        log.info("e.getClass={}", e.getClass());
+
+        // Delete 처리 중 id가 일치 하지 않으면 아래의 Exception 발생
+        if (e instanceof EmptyResultDataAccessException) {
+            return new ErrorResult("404 NOT FOUND", "No Such Data");
+        }
         return new ErrorResult("404 NOT FOUND", e.getMessage());
     }
 }
