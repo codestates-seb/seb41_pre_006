@@ -11,6 +11,7 @@ import pre006.stackoverflow.domain.user.entity.User;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.*;
@@ -19,12 +20,8 @@ import static org.assertj.core.api.Assertions.*;
 @SpringBootTest
 class UserRepositoryTest {
 
-    private final UserRepository repository;
-
     @Autowired
-    public UserRepositoryTest(UserRepository repository) {
-        this.repository = repository;
-    }
+    private UserRepository repository;
 
     @BeforeEach
     void beforeEach() {
@@ -35,7 +32,7 @@ class UserRepositoryTest {
 
 
     @Test
-    @DisplayName("저장, 조회")
+    @DisplayName("저장과 조회")
     void saveAndFind() {
         User saveUser = addUser("hgd4@naver.com", "4444", "하이요", "하이요 입니다.", "뉴욕");
 
@@ -45,15 +42,22 @@ class UserRepositoryTest {
     }
 
     @Test
+    @DisplayName("전체 조회")
     void findUsers() {
         List<User> allUsers = repository.findAll();
-        assertThat(allUsers).containsExactly();
+        assertThat(allUsers.size()).isEqualTo(3);
     }
 
     @Test
-    void hi() {
-        System.out.println("hello");
+    @DisplayName("삭제")
+    void deleteUsers() throws InterruptedException {
+        repository.deleteById(1L);
+        Optional<User> findUser = repository.findById(1L);
+        assertThatThrownBy(() -> findUser.get()).isInstanceOf(NoSuchElementException.class);
     }
+
+
+
 
     private User addUser(String email, String password, String name, String description, String location) {
         User user = new User();
