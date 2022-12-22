@@ -5,17 +5,16 @@ import pre006.stackoverflow.domain.answer.entity.Answer;
 import pre006.stackoverflow.domain.audit.BaseTime;
 import pre006.stackoverflow.domain.question.entity.Question;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Data
 @Entity(name = "USERS")
 public class User extends BaseTime {
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
 
     @Column(nullable = false, unique = true)
