@@ -4,9 +4,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import pre006.stackoverflow.domain.answer.entity.Answer;
 import pre006.stackoverflow.domain.answer.repository.AnswerRepository;
-import pre006.stackoverflow.domain.exception.BusinessLogicException;
-import pre006.stackoverflow.domain.exception.ExceptionCode;
+//import pre006.stackoverflow.domain.exception.BusinessLogicException;
+//import pre006.stackoverflow.domain.exception.ExceptionCode;
 
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -25,9 +26,9 @@ public class AnswerService {
         return answerRepository.save(findAnswer);
     }
 
-    public Answer getAnswer(Long userId, Answer answer) {
-        return null;
-    }
+//    public Answer getAnswer(Long userId, Answer answer) {
+//        return null;
+//    }
 
     public void deleteAnswer(long answerId) {
         Answer findAnswer = findVerifiedAnswer(answerId);
@@ -38,7 +39,7 @@ public class AnswerService {
     private Answer findVerifiedAnswer(long answerId) {
         Optional<Answer> optionalAnswer = answerRepository.findById(answerId);
         Answer findAnswer = optionalAnswer.orElseThrow(()->
-        new BusinessLogicException(ExceptionCode.ANSWER_NOT_FOUND));
+                new NoSuchElementException("No Such Answer"));
 
         return findAnswer;
     }

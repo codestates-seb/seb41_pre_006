@@ -42,10 +42,10 @@ public class AnswerController {
         return new ResponseEntity<>(answerMapper.answerToAnswerResponseDto(answer), HttpStatus.OK);
     }
 
-    @GetMapping ("/{userId}") // 해당 유저의 답변 리스트
-    public ResponseEntity getAnswer() {
-        return ResponseEntity.ok(null);
-    }
+//    @GetMapping ("/{userId}") // 해당 유저의 답변 리스트
+//    public ResponseEntity getAnswer() {
+//        return ResponseEntity.ok(null);
+//    }
 
     @DeleteMapping("/{answerId}") // 답변 삭제
     public ResponseEntity deleteAnswer(@PathVariable("answerId") @Positive long answerId) {
