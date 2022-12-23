@@ -25,7 +25,7 @@ const SocialLoginContainer = styled.div`
   align-items: center;
   padding: 0;
   width: 100%;
-  heigjt: 30%;
+  height: 30%;
 `;
 
 const MainLoginContainer = styled.div`
