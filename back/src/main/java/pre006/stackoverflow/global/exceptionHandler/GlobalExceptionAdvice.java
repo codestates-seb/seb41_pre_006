@@ -20,15 +20,17 @@ import java.util.NoSuchElementException;
 public class GlobalExceptionAdvice {
 
     /**
-     * 서비스 계층의 Optional<> null 값인 경우의 예외 처리 <br>
-     * 리포지토리 계층의 remove(id) 값이 없을 때의 예외 처리
+     *
+     * @exception NoSuchElementException 서비스 계층의 Optional<> 값이 null 일 경우에 발생하는 예외를 처리
+     * @exception EmptyResultDataAccessException 리포지토리 계층의 remove(id) 값이 DB에 존재하지 않을 때의 예외를 처리
      */
     @ResponseStatus(HttpStatus.NOT_FOUND)
+    // 현재 2개 예외 잡아서 처리함, 추후 추가 가능
     @ExceptionHandler({NoSuchElementException.class, EmptyResultDataAccessException.class})
     public ErrorResult handleNoSuchElementException(RuntimeException e) {
         log.info("e.getClass={}", e.getClass());
 
-        // Delete 처리 중 id가 일치 하지 않으면 아래의 Exception 발생
+        // EmptyResultDataAccessException 공통화 처리
         if (e instanceof EmptyResultDataAccessException) {
             return new ErrorResult("404 NOT FOUND", "No Such Data");
         }
