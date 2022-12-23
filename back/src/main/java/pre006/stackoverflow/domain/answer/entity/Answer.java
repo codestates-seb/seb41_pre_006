@@ -12,7 +12,7 @@ import javax.persistence.*;
 public class Answer extends BaseTime {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Long answerId;
 
     @Column(columnDefinition = "TEXT", nullable = false)
