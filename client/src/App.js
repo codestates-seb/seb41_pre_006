@@ -1,27 +1,20 @@
+import React from "react";
 import { Reset } from "styled-reset";
-import { createGlobalStyle } from "styled-components";
+import GlobalStyle from "./styles/GlobalStyle";
 
 import Header from "./components/Header";
-import QustionsPage from "./components/QustionsPage";
 import Footer from "./components/Footer";
-// import GlobalStyles from "./GlobalStyles";
-
-const GlobalStyles = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
-  body {
-      font-family: 'Roboto', sans-serif;
-  }
-`;
+import QustionsPage from "./components/QustionsPage";
 
 function App() {
   return (
     <section className="App">
       <Reset />
-      <GlobalStyles />
+      <GlobalStyle />
       <Header />
       <QustionsPage /> {/* 임시 레이아웃 */}
       <Footer />
-      {/**/}
+      {/* 주석 샘플 나중에 날릴게요🥹 */}
     </section>
   );
 }
