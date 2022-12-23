@@ -1,7 +1,7 @@
 # Stackoverflow clone
 
 ## Team 소개
-| 박인우(FE)| 강보미(FE)| 이지민(BE)|임동규(BE)|성승훈(BE)|
+| 박인우(FE)| 강보미(FE)| 최지민(BE)|임동규(BE)|성승훈(BE)|
 |:---:|:---:|:---:|:---:|:---:|
 | test   | test |
 | test   | test |
