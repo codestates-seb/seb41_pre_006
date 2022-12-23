@@ -5,4 +5,5 @@ import javax.validation.constraints.NotEmpty;
 public class AnswerPostDto {
     @NotEmpty
     private String content;
+
 }
