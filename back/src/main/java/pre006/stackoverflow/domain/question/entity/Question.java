@@ -32,10 +32,16 @@ public class Question extends BaseTime {
     @Column(columnDefinition = "TEXT", nullable = false)
     private String content;
 
+    @Column(nullable = false)
     private Long viewCount;
 
-//    @OneToMany(mappedBy = "question")
-//    List<QuestionVote> questionVote = new ArrayList<>();
+    @Column(nullable = false)
+    private Long voteCount;
+
+
+
+    @OneToMany(mappedBy = "question")
+    List<QuestionVote> questionVote = new ArrayList<>();
 
     @OneToMany(mappedBy = "question")
     List<Answer> answerList = new ArrayList<>();
@@ -45,8 +51,11 @@ public class Question extends BaseTime {
     private User user;  // Question과 User는 다대일 관계
 
 
-
-
+    public void addQuestionVote(QuestionVote questionVote) {
+        this.questionVote.add(questionVote);
+        if (questionVote.getQuestion() != this)
+            questionVote.setQuestion(this);
+    }
 
     public void addUser(User user) {
         this.user = user;

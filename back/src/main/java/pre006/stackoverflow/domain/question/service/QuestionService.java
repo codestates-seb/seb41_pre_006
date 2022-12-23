@@ -4,6 +4,7 @@ package pre006.stackoverflow.domain.question.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import pre006.stackoverflow.domain.question.entity.Question;
+import pre006.stackoverflow.domain.question.mapper.QuestionMapper;
 import pre006.stackoverflow.domain.question.repository.QuestionRepository;
 
 import java.util.Optional;
@@ -17,7 +18,7 @@ public class QuestionService {
 
 
 
-    public Question createQuestion(Question question, Long userId) {
+    public Question createQuestion(Question question) {
         return questionRepository.save(question);
     }
 
@@ -41,9 +42,11 @@ public class QuestionService {
     }
 
     public Question getQuestion(long questionId) {
-        Question findQuestion = questionRepository.findById(questionId).orElseThrow();
 
-        return findQuestion;
+    Question findQuestion = questionRepository.findById(questionId).get();
+    findQuestion.setViewCount(findQuestion.getViewCount()+1);
+    questionRepository.save(findQuestion);
+    return findQuestion;
     }
 
 

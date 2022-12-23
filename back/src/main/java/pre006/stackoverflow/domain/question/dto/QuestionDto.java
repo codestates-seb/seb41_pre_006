@@ -40,24 +40,17 @@ public class QuestionDto {
     @Setter
     @NoArgsConstructor
     @AllArgsConstructor
-    public  class QuestionResponeDto extends BaseTime {
+    public static class QuestionResponseDto extends BaseTime {
         private Long questionId;
         private String title;
         private String content;
         private Long viewCount;
+        private Long vote;
         private String userName;
         private Long userId;
         private Long answerCount;
-
-        public QuestionResponeDto(Question question) {
-            this.questionId = question.getQuestionId();
-            this.title = question.getTitle();
-            this.content = question.getContent();
-            this.viewCount = question.getViewCount();
-            this.userName = question.getUser().getName();
-            this.userId = question.getUser().getUserId();
-            this.answerCount = (long) question.getAnswerList().size();
-        }
+        private LocalDateTime createdAt;
+        private LocalDateTime updatedAt;
     }
 
 

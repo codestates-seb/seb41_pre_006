@@ -16,7 +16,7 @@ public interface QuestionMapper {
                 return question;
         }
 
-        default Question questionPatchDtoToEntity(QuestionDto.QuestionPatchDto questionPatchDto, Long userId) {
+        default Question questionPatchDtoToEntity(QuestionDto.QuestionPatchDto questionPatchDto) {
 
                 Question question = new Question();
                 question.setQuestionId(questionPatchDto.getQuestionId());
@@ -26,4 +26,16 @@ public interface QuestionMapper {
         }
 
 
+        default QuestionDto.QuestionResponseDto entityToQuestionResponseDto(Question question) {
+
+                QuestionDto.QuestionResponseDto questionResponseDto = new QuestionDto.QuestionResponseDto();
+                questionResponseDto.setQuestionId(question.getQuestionId());
+                questionResponseDto.setTitle(question.getTitle());
+                questionResponseDto.setContent(question.getContent());
+                questionResponseDto.setViewCount(question.getViewCount());
+                questionResponseDto.setUserName(question.getUser().getName());
+                questionResponseDto.setUserId(question.getUser().getUserId());
+                questionResponseDto.setAnswerCount((long) question.getAnswerList().size());
+                return questionResponseDto;
+        }
 }
