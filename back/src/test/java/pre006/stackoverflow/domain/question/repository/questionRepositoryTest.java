@@ -38,13 +38,7 @@ public class questionRepositoryTest {
         assertThat(findQuestion).isEqualTo(saveQuestion);
     }
 
-    @Test
-    @DisplayName("삭제")
-    void deleteUsers() throws InterruptedException {
-        repository.deleteById(1L);
-        Optional<Question> findQuestion = repository.findById(1L);
-        assertThatThrownBy(() -> findQuestion.get()).isInstanceOf(NoSuchElementException.class);
-    }
+
 
     private Question addQue(String title, String content, String viewCount, String voteCount) {
         Question question = new Question();
