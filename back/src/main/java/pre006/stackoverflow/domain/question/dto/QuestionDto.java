@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import pre006.stackoverflow.domain.audit.BaseTime;
-import pre006.stackoverflow.domain.question.entity.Question;
 
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
@@ -52,7 +51,5 @@ public class QuestionDto {
         private LocalDateTime createdAt;
         private LocalDateTime updatedAt;
     }
-
-
 }
 

@@ -29,8 +29,8 @@ public class AnswerController {
 
     @PostMapping("/{questionId}") // 답변 추가
     public ResponseEntity postAnswer(@PathVariable ("questionId") long questionId, @Valid @RequestBody AnswerPostDto answerPostDto) {
-        answerPostDto.setQuestionId(questionId);
-        Answer answer = answerService.createAnswer(answerMapper.answerPostDtoToAnswer(answerPostDto));
+
+        Answer answer = answerService.createAnswer(answerMapper.answerPostDtoToAnswer(answerPostDto, questionId));
 
         return new ResponseEntity<>(answerMapper.answerToAnswerResponseDto(answer), HttpStatus.CREATED);
     }
