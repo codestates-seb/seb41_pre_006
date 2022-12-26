@@ -1,6 +1,7 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
-const Button = styled.button`
+const Button = styled(Link)`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -21,7 +22,11 @@ const Button = styled.button`
 `;
 
 const AskButton = () => {
-  return <Button>Ask&nbsp;Qustion</Button>;
+  return (
+    <Button>
+      <Link to={"/questions/ask"}>Ask&nbsp;Qustion</Link>
+    </Button>
+  );
 };
 
 export default AskButton;
