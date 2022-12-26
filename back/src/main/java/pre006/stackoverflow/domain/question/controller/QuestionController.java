@@ -34,8 +34,8 @@ public class QuestionController {
     }
 
     //post mapping
-    @PostMapping("")
-    public ResponseEntity postQuestion( @Validated@RequestBody QuestionDto.QuestionPostDto questionPostDto, @PathVariable("user-id") Long userId) {
+    @PostMapping("{userId}")
+    public ResponseEntity postQuestion( @Validated@RequestBody QuestionDto.QuestionPostDto questionPostDto, @PathVariable("userId") Long userId) {
         Question question = questionService.createQuestion(questionMapper.questionPostDtoToEntity(questionPostDto));
         log.info("postQuestion()");
         return new ResponseEntity<>(questionMapper.entityToQuestionResponseDto(question), HttpStatus.CREATED);
