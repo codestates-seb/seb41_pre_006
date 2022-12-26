@@ -14,13 +14,16 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
+
 @NoArgsConstructor
 @Getter
 @Setter
 @Entity(name = "QUESTION")
 public class Question extends BaseTime {
 
-    @Id
+    @Id     // PK
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long questionId;
 
@@ -30,7 +33,19 @@ public class Question extends BaseTime {
     @Column(columnDefinition = "TEXT", nullable = false)
     private String content;
 
-    private Long viewCount;
+//    @Column(nullable = false)
+//    private Long viewCount = 0L;
+//
+//    @Column(nullable = false)
+//    private Long voteCount = 0L;
+
+    @OneToMany(mappedBy = "question")
+    List<QuestionTag> questionTag = new ArrayList<>();
+
+
+
+    @OneToMany(mappedBy = "question")
+    List<QuestionVote> questionVote = new ArrayList<>();
 
     @OneToMany(mappedBy = "question")
     List<Answer> answerList = new ArrayList<>();
@@ -39,8 +54,33 @@ public class Question extends BaseTime {
     @JoinColumn(name = "user_id")
     private User user;
 
+
+    public void addQuestionVote(QuestionVote questionVote) {
+        this.questionVote.add(questionVote);
+        if (questionVote.getQuestion() != this)
+            questionVote.setQuestion(this);
+    }
+
+    public void addUser(User user) {
+        this.user = user;
+        if (this.user == null && user != null)
+            this.user = user;
+    }
+
+
+//    public void addViewCount() {
+//        this.viewCount++;
+//    }
+
     public void addAnswerList(Answer answer) {
         this.answerList.add(answer);
     }
+
+
+
+//    public void addQuestionVoteList(QuestionVote questionVote) {
+//        this.questionVote.add(questionVote);
+//    }
+
 
 }

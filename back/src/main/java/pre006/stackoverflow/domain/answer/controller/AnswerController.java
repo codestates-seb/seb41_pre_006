@@ -16,7 +16,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.Positive;
 
 @RestController
-@RequestMapping
+@RequestMapping("/answers")
 @Validated
 public class AnswerController {
     private final AnswerService answerService;
@@ -27,9 +27,10 @@ public class AnswerController {
         this.answerMapper = answerMapper;
     }
 
-    @PostMapping // 답변 추가
-    public ResponseEntity postAnswer(@Valid @RequestBody AnswerPostDto answerPostDto) {
-        Answer answer = answerService.createAnswer(answerMapper.answerPostDtoToAnswer(answerPostDto));
+    @PostMapping("/{questionId}") // 답변 추가
+    public ResponseEntity postAnswer(@PathVariable ("questionId") long questionId, @Valid @RequestBody AnswerPostDto answerPostDto) {
+
+        Answer answer = answerService.createAnswer(answerMapper.answerPostDtoToAnswer(answerPostDto, questionId));
 
         return new ResponseEntity<>(answerMapper.answerToAnswerResponseDto(answer), HttpStatus.CREATED);
     }

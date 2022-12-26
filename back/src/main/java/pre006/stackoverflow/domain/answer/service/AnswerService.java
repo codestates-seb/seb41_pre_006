@@ -2,8 +2,11 @@ package pre006.stackoverflow.domain.answer.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import pre006.stackoverflow.domain.answer.entity.Answer;
 import pre006.stackoverflow.domain.answer.repository.AnswerRepository;
+import pre006.stackoverflow.domain.question.entity.Question;
+import pre006.stackoverflow.domain.question.repository.QuestionRepository;
 //import pre006.stackoverflow.domain.exception.BusinessLogicException;
 //import pre006.stackoverflow.domain.exception.ExceptionCode;
 
@@ -12,11 +15,16 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class AnswerService {
 
     public final AnswerRepository answerRepository;
+    private final QuestionRepository questionRepository;
 
     public Answer createAnswer(Answer answer) {
+        Question findQuestion = questionRepository.findById(answer.getQuestion().getQuestionId()).get();
+        findQuestion.addAnswerList(answer);
+
         return answerRepository.save(answer);
     }
 
@@ -29,6 +37,10 @@ public class AnswerService {
 //    public Answer getAnswer(Long userId, Answer answer) {
 //        return null;
 //    }
+
+    public Answer findAnswer (long answerId) {
+        return findVerifiedAnswer(answerId);
+    }
 
     public void deleteAnswer(long answerId) {
         Answer findAnswer = findVerifiedAnswer(answerId);
