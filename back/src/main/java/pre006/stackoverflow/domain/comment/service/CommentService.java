@@ -28,21 +28,27 @@ public class CommentService {
 
     public Comment createQuestionComment(Comment comment, long questionId) {
 
-//        findQuestion  service 필요
+//        Question question = questionService.findQuestion(questionId); // 단순 questionId 검색기능 필요
+//        comment.setQuestion(question);
+//        question.getComment().add(comment); // Comment <-> question 연관관계 맵핑
+//        questionRepository.save(question);
+
 
         return commentRepository.save(comment);
     }
 
     public Comment createAnswerComment(Comment comment, long answerId) {
 
-//        Answer answer = answerService.findAnswer(answerId);
-//        comment.setAnswer(answer);
-        //
+        Answer answer = answerService.findAnswer(answerId);
+        comment.setAnswer(answer);
+        answer.getComment().add(comment);
+        answerRepository.save(answer);
+
 
         return commentRepository.save(comment);
     }
 
-    public Comment updateComment (Comment comment, long commentId) {
+    public Comment updateComment (Comment comment) {
         Comment findComment = findVerifiedComment(comment.getCommentId());
         Optional.ofNullable(comment.getContent()).ifPresent(content -> findComment.setContent(content));
 

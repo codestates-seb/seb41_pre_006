@@ -1,6 +1,7 @@
 package pre006.stackoverflow.domain.comment.controller;
 
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -27,31 +28,39 @@ public class CommentController {
 
     @PostMapping("/{questionId}") // 질문에 대한 코멘트 추가
     public ResponseEntity postQuestionComment(@Valid @RequestBody CommentPostDto commentPostDto,
-                                              @PathVariable("questionId") long commentId) {
-        return new ResponseEntity(null);
+                                              @PathVariable("questionId") long questionId) {
+        commentPostDto.setQuestionId(questionId);
+        Comment comment = commentService.createQuestionComment(commentMapper.commentPostDtoToComment(commentPostDto), questionId);
+
+        return new ResponseEntity<>(commentMapper.commentToCommentResponseDto(comment), HttpStatus.CREATED);
 
     }
 
     @PostMapping("/answerId") // 답변에 대한 코멘트 추가
     public ResponseEntity postAnswerComment(@Valid @RequestBody CommentPostDto commentPostDto,
-                                            @PathVariable("answerId") long commentId) {
-//        commentPostDto.setCommentId(commentId);
-//        Comment comment = commentService.createAnswerComment(commentMapper.commentPostDtoToComment(commentPostDto, co));
+                                            @PathVariable("answerId") long answerId) {
+        commentPostDto.setAnswerId(answerId);
+        Comment comment = commentService.createAnswerComment(commentMapper.commentPostDtoToComment(commentPostDto), answerId);
 
-        return new ResponseEntity(null);
+        return new ResponseEntity<>(commentMapper.commentToCommentResponseDto(comment), HttpStatus.CREATED);
 
 
     }
     @PatchMapping("/commentId") // 코멘트 내용 변경
     public ResponseEntity patchComment(@Valid @RequestBody CommentPatchDto commentPatchDto,
                                        @PathVariable("commentId") long commentId) {
-        return new ResponseEntity(null);
+        commentPatchDto.setCommentId(commentId);
+        Comment comment = commentService.updateComment(commentMapper.commentPatchDtoToComment(commentPatchDto));
+
+
+        return new ResponseEntity<>(commentMapper.commentToCommentResponseDto(comment), HttpStatus.OK);
 
     }
 
     @DeleteMapping("/commentId") // 코멘트 삭제
     public ResponseEntity deleteComment(@PathVariable("commentId") long commentId) {
-        return new ResponseEntity(null);
+        commentService.deleteComment(commentId);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
     }
 
