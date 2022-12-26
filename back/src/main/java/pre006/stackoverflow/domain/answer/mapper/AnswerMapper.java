@@ -8,16 +8,21 @@ import pre006.stackoverflow.domain.answer.dto.AnswerPostDto;
 import pre006.stackoverflow.domain.answer.dto.AnswerResponseDto;
 import pre006.stackoverflow.domain.answer.entity.Answer;
 import pre006.stackoverflow.domain.question.entity.Question;
+import pre006.stackoverflow.domain.user.entity.User;
 
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface AnswerMapper {
 
-    default Answer answerPostDtoToAnswer(AnswerPostDto answerPostDto, long questionId) {
+    default Answer answerPostDtoToAnswer(AnswerPostDto answerPostDto, long questionId, long userId) {
         Answer answer = new Answer();
+        answer.setTitle(answerPostDto.getTitle());
         answer.setContent(answerPostDto.getContent());
         Question question = new Question();
         question.setQuestionId(questionId);
+        User user = new User();
+        user.setUserId(userId);
         answer.setQuestion(question);
+        answer.setUser(user);
 
         return answer;
     }

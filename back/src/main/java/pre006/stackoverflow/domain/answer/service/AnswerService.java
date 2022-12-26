@@ -22,9 +22,6 @@ public class AnswerService {
     private final QuestionRepository questionRepository;
 
     public Answer createAnswer(Answer answer) {
-        Question findQuestion = questionRepository.findById(answer.getQuestion().getQuestionId()).get();
-        findQuestion.addAnswerList(answer);
-
         return answerRepository.save(answer);
     }
 

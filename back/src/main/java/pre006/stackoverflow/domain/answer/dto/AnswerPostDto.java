@@ -8,6 +8,9 @@ import javax.validation.constraints.NotEmpty;
 public class AnswerPostDto {
 
     @NotEmpty
+    private String title;
+
+    @NotEmpty
     private String content;
 
 }

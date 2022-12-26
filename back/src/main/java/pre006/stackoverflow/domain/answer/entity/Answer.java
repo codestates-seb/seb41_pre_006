@@ -22,6 +22,9 @@ public class Answer extends BaseTime {
     private Long answerId;
 
     @Column(columnDefinition = "TEXT", nullable = false)
+    private String title;
+
+    @Column(columnDefinition = "TEXT", nullable = false)
     private String content;
 
     @ManyToOne
