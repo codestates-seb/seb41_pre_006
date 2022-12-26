@@ -16,7 +16,7 @@ import javax.validation.constraints.Positive;
 
 @Validated
 @RestController
-@RequestMapping
+@RequestMapping("/comments")
 public class CommentController {
     private final CommentService commentService;
     private final CommentMapper commentMapper;

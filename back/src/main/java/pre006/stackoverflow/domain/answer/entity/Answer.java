@@ -18,7 +18,7 @@ import java.util.List;
 public class Answer extends BaseTime {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long answerId;
 
     @Column(columnDefinition = "TEXT", nullable = false)

@@ -18,7 +18,7 @@ import javax.persistence.*;
 public class Comment extends BaseTime {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long commentId;
 
     @Column(nullable = false)
