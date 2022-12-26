@@ -8,7 +8,6 @@ import pre006.stackoverflow.domain.answer.repository.AnswerRepository;
 import pre006.stackoverflow.domain.answer.service.AnswerService;
 import pre006.stackoverflow.domain.comment.entity.Comment;
 import pre006.stackoverflow.domain.comment.repository.CommentRepository;
-import pre006.stackoverflow.domain.question.entity.Question;
 import pre006.stackoverflow.domain.question.repository.QuestionRepository;
 import pre006.stackoverflow.domain.question.service.QuestionService;
 
@@ -26,25 +25,12 @@ public class CommentService {
     private final QuestionService questionService;
     private final AnswerService answerService;
 
-    public Comment createQuestionComment(Comment comment, long questionId) {
-
-//        Question question = questionService.findQuestion(questionId); // 단순 questionId 검색기능 필요
-//        comment.setQuestion(question);
-//        question.getComment().add(comment); // Comment <-> question 연관관계 맵핑
-//        questionRepository.save(question);
-
+    public Comment createQuestionComment(Comment comment) {
 
         return commentRepository.save(comment);
     }
 
-    public Comment createAnswerComment(Comment comment, long answerId) {
-
-        Answer answer = answerService.findAnswer(answerId);
-        comment.setAnswer(answer);
-        answer.getComment().add(comment);
-        answerRepository.save(answer);
-
-
+    public Comment createAnswerComment(Comment comment) {
         return commentRepository.save(comment);
     }
 

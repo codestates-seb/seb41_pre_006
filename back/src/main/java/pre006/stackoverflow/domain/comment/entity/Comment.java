@@ -19,7 +19,11 @@ public class Comment extends BaseTime {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long commentId;
+    private Long commentId;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private CommentType commentType;
 
     @Column(nullable = false)
     private String content;

@@ -27,10 +27,9 @@ public class AnswerController {
         this.answerMapper = answerMapper;
     }
 
-    @PostMapping("/{questionId}") // 답변 추가
-    public ResponseEntity postAnswer(@PathVariable ("questionId") long questionId, @Valid @RequestBody AnswerPostDto answerPostDto) {
-
-        Answer answer = answerService.createAnswer(answerMapper.answerPostDtoToAnswer(answerPostDto, questionId));
+    @PostMapping("/{userId}/{questionId}") // 답변 추가
+    public ResponseEntity postAnswer(@PathVariable ("questionId") long questionId, @PathVariable ("userId") long userId, @Valid @RequestBody AnswerPostDto answerPostDto) {
+        Answer answer = answerService.createAnswer(answerMapper.answerPostDtoToAnswer(answerPostDto, userId, questionId));
 
         return new ResponseEntity<>(answerMapper.answerToAnswerResponseDto(answer), HttpStatus.CREATED);
     }
