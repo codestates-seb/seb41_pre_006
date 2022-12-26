@@ -39,10 +39,16 @@ public class User extends BaseTime {
 
     public void addQuestionList(Question question) {
         this.questionList.add(question);
+        if (question.getUser() != this) {
+            question.setUser(this);
+        }
     }
 
     public void addAnswerList(Answer answer) {
         this.answerList.add(answer);
+        if (answer.getUser() != this) {
+            answer.setUser(this);
+        }
     }
 
 }

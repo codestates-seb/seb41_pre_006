@@ -1,5 +1,6 @@
 package pre006.stackoverflow.global.exceptionHandler;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -15,15 +16,24 @@ import java.util.NoSuchElementException;
  * 이를 본 클래스가 잡아서 처리한다.
  */
 @RestControllerAdvice
+@Slf4j
 public class GlobalExceptionAdvice {
 
     /**
-     * 서비스 계층의 Optional<> null 값인 경우의 예외 처리 <br>
-     * 리포지토리 계층의 remove(id) 값이 없을 때의 예외 처리
+     *
+     * @exception NoSuchElementException 서비스 계층의 Optional<> 값이 null 일 경우에 발생하는 예외를 처리
+     * @exception EmptyResultDataAccessException 리포지토리 계층의 remove(id) 값이 DB에 존재하지 않을 때의 예외를 처리
      */
     @ResponseStatus(HttpStatus.NOT_FOUND)
+    // 현재 2개 예외 잡아서 처리함, 추후 추가 가능
     @ExceptionHandler({NoSuchElementException.class, EmptyResultDataAccessException.class})
     public ErrorResult handleNoSuchElementException(RuntimeException e) {
+        log.info("e.getClass={}", e.getClass());
+
+        // EmptyResultDataAccessException 공통화 처리
+        if (e instanceof EmptyResultDataAccessException) {
+            return new ErrorResult("404 NOT FOUND", "No Such Data");
+        }
         return new ErrorResult("404 NOT FOUND", e.getMessage());
     }
 }
