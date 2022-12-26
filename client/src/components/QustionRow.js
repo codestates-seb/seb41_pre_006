@@ -1,53 +1,76 @@
 import styled from "styled-components";
 
 const StyledQustionRow = styled.div`
-  background-color: beige;
-  padding: 10px 16px 10px;
-  display: grid;
-  grid-template-columns: repeat(3, 50px) 1fr;
-  border-top: 1px solid #d3d3d3;
+  display: flex;
+  padding: 16px;
+  border-top: 1px solid #e3e6e8;
+`;
+
+const QustionStatArea = styled.div`
+  margin-right: 16px;
+  margin-left: 48px;
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+`;
+const QustionListArea = styled.div`
+  width: 100%;
+`;
+const TagArea = styled.div`
+  display: flex;
 `;
 
 const QustionStat = styled.div`
-  text-align: center;
-  display: inline-block;
-  font-size: 1.2rem;
-  color: #000;
+  display: flex;
+  padding: 3px 4px;
+  border-radius: 4px;
+  border: 1px solid #fff;
+  margin-bottom: 8px;
+  font-size: 0.6rem;
+  line-height: 0.6rem;
+  font-weight: 500;
   span {
-    margin-top: 4px;
-    display: block;
+    margin-left: 4px;
     font-weight: 400;
-    font-size: 0.7rem;
   }
-`;
-
-const QustionTitleArea = styled.div`
-  padding: 0 30px;
+  &:hover {
+    border-radius: 4px;
+    border: 1px solid;
+  }
 `;
 
 const QustionLink = styled.a`
   text-decoration: none;
-  font-size: 1.2rem;
+  font-size: 0.7rem;
   display: block;
-  margin-bottom: 4px;
+  margin: 2px 0 0 0;
+  color: #0074cc;
+  /* active demo 입니다. */
+  &:active {
+    background-color: #0a95ff;
+  }
+`;
+const QustionPreview = styled.p`
+  margin: 8px 0;
+  font-size: 0.6rem;
+  line-height: 0.8rem;
 `;
 
 const Tag = styled.a`
-  display: inline-block;
-  padding: 2px 4px;
-  border-radius: 4px;
-  margin-right: 3px;
+  margin-right: 8px;
+  padding: 0.4em 0.5em;
+  font-size: 0.6rem;
   color: #39739d;
   background-color: #e1ecf4;
-  font-size: 0.7rem;
+  border-radius: 3px;
 `;
 
-const WhoAndWhen = styled.div`
+const LastUpdate = styled.div`
   display: flex;
-  color: #aaa;
-  font-size: 0.8rem;
+  align-items: flex-end;
   justify-content: flex-end;
-  padding: 10px 0;
+  color: #6a737c;
+  font-size: 0.6rem;
 `;
 
 const UserLink = styled.div`
@@ -58,26 +81,34 @@ const UserLink = styled.div`
 function QustionRow() {
   return (
     <StyledQustionRow>
-      <QustionStat>
-        0<span>vote</span>
-      </QustionStat>
-      <QustionStat>
-        3<span>answers</span>
-      </QustionStat>
-      <QustionStat>
-        8<span>views</span>
-      </QustionStat>
-      <QustionTitleArea>
-        <div>
-          <QustionLink>질문 합니다..</QustionLink>
+      <QustionStatArea>
+        <QustionStat>
+          0<span>votes</span>
+        </QustionStat>
+        <QustionStat>
+          3<span>answers</span>
+        </QustionStat>
+        <QustionStat>
+          8<span>views</span>
+        </QustionStat>
+      </QustionStatArea>
+      <QustionListArea>
+        <QustionLink>질문 타이틀 입니다.</QustionLink>
+        <QustionPreview>
+          질문 컨텐츠 입니다. 어쩌구.. 저쩌구.....
+          <br />
+          하여튼 안돼요... 그냥 안돼요.....
+        </QustionPreview>
+        <TagArea>
           <Tag>java</Tag>
-          <Tag>js</Tag>
+          <Tag>react.js</Tag>
+          <Tag>components</Tag>
           <Tag>literals</Tag>
-        </div>
-        <WhoAndWhen>
-          <UserLink>kim coding</UserLink>1 asked 30mins age
-        </WhoAndWhen>
-      </QustionTitleArea>
+        </TagArea>
+        <LastUpdate>
+          <UserLink>kim coding</UserLink>1 asked 30mins ago
+        </LastUpdate>
+      </QustionListArea>
     </StyledQustionRow>
   );
 }

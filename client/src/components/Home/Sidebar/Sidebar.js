@@ -1,7 +1,7 @@
-import { InfoSvg, StarSvg, EarthSvg } from "./images/HomeSvg";
-import { SidebarContainer, Wrapper, Teams } from "./Home/Sidebar/Sidebar_style";
+import { InfoSvg, StarSvg, EarthSvg } from "../../images/HomeSvg";
+import { SidebarContainer, Wrapper, Teams } from "./Sidebar_style";
 
-const Nav = (type) => {
+export const Nav = (type) => {
   return (
     <SidebarContainer>
       <Wrapper>
@@ -54,4 +54,3 @@ const Nav = (type) => {
     </SidebarContainer>
   );
 };
-export default Nav;

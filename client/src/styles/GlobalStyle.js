@@ -1,20 +1,19 @@
 // css 초기화
-import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
+import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
-  // 아래에 전역 스타일을 추가.
-  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2family=Roboto:wght@300;400;700&display=swap'); 
+  
   * {
     box-sizing: border-box;
+    
   }
-  body{
+
+  html, body{
     margin: 0;
     padding: 0;
-    min-height: 100vh;
-    background-color: #ffffff;
-    color: #232629;
     font-family: "Roboto",system-ui,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Arial,sans-serif; 
   }
   a {
@@ -33,11 +32,9 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     font-size: 100%;
   }
-  ul {
+  ol, ul, li {
     margin: 0;
     padding: 0;
-  }
-  ol, ul, li {
     list-style: none;
   }
   img {
@@ -45,13 +42,24 @@ const GlobalStyle = createGlobalStyle`
     width: 100%;
     height: 100%;
   }
-  button {
-    padding: 0;
-    background-color: transparent;
-    font-size: 100%;
-    border: none;
-    cursor: pointer;
-  }
+  // button {
+  //   cursor: pointer;
+  //   box-sizing: border-box;
+  //   padding: 0;
+  //   background-color: transparent;
+  //   font-size: 100%;
+  //   border: none;
+  // }
+  //임시: main tag를 Conteiner용으로 사용중입니다.
+  main {
+    z-index: 6000;
+    overflow-y: auto;
+    position: relative !important ;
+    left: 0;
+    // top: 54px;
+    width: 100vw;
+    // padding: 32px 24px 32px 0;
+    // background-color: #d3d3d3;
+  };
 `;
-
 export default GlobalStyle;

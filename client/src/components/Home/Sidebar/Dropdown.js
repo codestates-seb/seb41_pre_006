@@ -1,25 +1,25 @@
-import { InfoSvg, StarSvg, EarthSvg } from "./images/HomeSvg";
-import { SidebarContainer, Wrapper, Teams } from "./Home/Sidebar/Sidebar_style";
+import { EarthSvg, InfoSvg, StarSvg } from '../../../assets/images/HomeSvg';
+import { DropdownContainer, Wrapper, Teams } from './Dropdown_style';
 
-const Nav = (type) => {
+export const Dropdown = (type) => {
   return (
-    <SidebarContainer>
+    <DropdownContainer>
       <Wrapper>
         <div className="side-bar-tabs">
           <div className="tab-menu">
             <div>Home</div>
           </div>
-          <p className="title fc-light">PUBLIC</p>
-          <a href="/" className={type.page === "home" ? "selected" : ""}>
+          <p className="title">PUBLIC</p>
+          <a href="/" className={type.page2 === 'home' ? 'selected' : ''}>
             <p>
               <EarthSvg />
               Questions
             </p>
           </a>
-          <a href="/tags" className={type.page === "tags" ? "selected" : ""}>
+          <a href="/tags" className={type.page2 === 'tags' ? 'selected' : ''}>
             <p className="is-padding">Tags</p>
           </a>
-          <a href="/users" className={type.page === "users" ? "selected" : ""}>
+          <a href="/users" className={type.page2 === 'users' ? 'selected' : ''}>
             <p className="is-padding">Users</p>
           </a>
           <div className="tab-menu">
@@ -51,7 +51,6 @@ const Nav = (type) => {
           <button className="white-button">Why Teams?</button>
         </Teams>
       </Wrapper>
-    </SidebarContainer>
+    </DropdownContainer>
   );
 };
-export default Nav;

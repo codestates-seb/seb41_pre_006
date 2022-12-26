@@ -31,12 +31,14 @@ const SocialLoginContainer = styled.div`
 const MainLoginContainer = styled.div`
   display: flex;
   flex-direction: column;
+  /* justify-content: space-between; */
   width: 100%;
   height: 50%;
   background-color: white;
   border-radius: 5%;
   box-shadow: -1px 1px 10px 2px #dcdcdc;
   margin-top: 1em;
+  padding: 32px;
 `;
 
 const HelpContainer = styled.div`
@@ -45,6 +47,9 @@ const HelpContainer = styled.div`
   width: 100%;
   text-align: center;
   margin-top: 2em;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 18px;
 `;
 
 const Box = styled.div`
@@ -53,33 +58,36 @@ const Box = styled.div`
   width: 100%;
   text-align: left;
   font-weight: 500;
-  margin-top: 1.5em;
-  margin-left: 2em;
+  font-size: 0.7rem;
+  margin-bottom: 8px;
+  /* margin-top: 1.5em; */
+  /* margin-left: 2em; */
 `;
 const EmailInput = styled.input`
-  width: 80%;
-  height: 13%;
-  margin-top: 1em;
+  width: 100%;
+  height: 18%;
+  /* margin-top: 1em; */
   border-radius: 4px;
-  border-color: #dcdcdc;
+  border: 1px solid #dcdcdc;
+  margin-bottom: 16px;
 `;
 const PasswordInput = styled.input`
-  width: 80%;
-  height: 13%;
-  margin-top: 1em;
+  width: 100%;
+  height: 18%;
+  /* margin-top: 1em; */
   border-radius: 4px;
-  border-color: #dcdcdc;
+  border: 1px solid #dcdcdc;
 `;
 const Button = styled.button`
   background-color: #2d7fff;
   border: none;
-  width: 85%;
+  width: 100%;
   height: 40px;
-  margin-top: 1.3em;
+  margin-top: 2em;
   border-radius: 4px;
   text-align: center;
   color: white;
-  font-size: 1.2em;
+  font-size: 0.8em;
   font-weight: 300;
 `;
 const SocialButton = styled.button`
@@ -89,8 +97,9 @@ const SocialButton = styled.button`
   border-radius: 7px;
   background-color: ${(props) => props.color};
   color: ${(props) => props.fontcolor};
-  font-size: 1em;
+  font-size: 0.8em;
   border-color: #dcdcdc;
+  font-weight: 300;
 `;
 
 function LoginPage() {
