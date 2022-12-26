@@ -2,6 +2,7 @@ package pre006.stackoverflow.domain.answer.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import pre006.stackoverflow.domain.answer.entity.Answer;
 import pre006.stackoverflow.domain.answer.repository.AnswerRepository;
 //import pre006.stackoverflow.domain.exception.BusinessLogicException;
@@ -12,6 +13,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class AnswerService {
 
     public final AnswerRepository answerRepository;
@@ -29,6 +31,10 @@ public class AnswerService {
 //    public Answer getAnswer(Long userId, Answer answer) {
 //        return null;
 //    }
+
+    public Answer findAnswer (long answerId) {
+        return findVerifiedAnswer(answerId);
+    }
 
     public void deleteAnswer(long answerId) {
         Answer findAnswer = findVerifiedAnswer(answerId);
