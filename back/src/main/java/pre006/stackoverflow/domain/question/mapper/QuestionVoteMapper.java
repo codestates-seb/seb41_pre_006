@@ -10,8 +10,8 @@ public class QuestionVoteMapper {
     public QuestionVoteResponseDto questionVoteToQuestionVoteDto(QuestionVote questionVote) {
         QuestionVoteResponseDto questionVoteDto = new QuestionVoteResponseDto();
         questionVoteDto.setQuestionId(questionVote.getQuestion().getQuestionId());
-        questionVoteDto.setVote(questionVote.getVote());
-        questionVoteDto.setTotalVote(questionVote.getQuestion().getVoteCount());
+//        questionVoteDto.setVote(questionVote.getVote());
+//        questionVoteDto.setTotalVote(questionVote.getQuestion().getVoteCount());
 
         return questionVoteDto;
     }

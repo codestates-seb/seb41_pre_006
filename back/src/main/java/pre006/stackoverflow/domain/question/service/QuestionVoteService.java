@@ -29,7 +29,7 @@ public class QuestionVoteService {
         questionVote.setQuestion(question);
         questionVote.setVote(vote);
         questionVoteRepository.save(questionVote);
-        question.setVoteCount(question.getVoteCount()+vote);
+//        question.setVoteCount(question.getVoteCount()+vote);
         questionRepository.save(question);
         return questionVote;
     }

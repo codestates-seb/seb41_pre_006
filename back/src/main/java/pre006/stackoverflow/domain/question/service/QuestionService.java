@@ -44,7 +44,7 @@ public class QuestionService {
     public Question getQuestion(long questionId) {
 
     Question findQuestion = questionRepository.findById(questionId).get();
-    findQuestion.setViewCount(findQuestion.getViewCount()+1);
+   // findQuestion.setViewCount(findQuestion.getViewCount()+1);
     questionRepository.save(findQuestion);
     return findQuestion;
     }

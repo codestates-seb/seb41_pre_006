@@ -10,9 +10,7 @@ import javax.persistence.*;
 import java.util.Optional;
 
 //엔티티그래프 오류
-//@NamedEntityGraph(name = "Question.withQuestionVote", attributeNodes = {
-//        @NamedAttributeNode("QuestionVote") // QuestionVote를 EAGER로 가져옴
-//})
+
 
 @Getter
 @Setter

@@ -16,6 +16,7 @@ import java.util.List;
 
 
 
+
 @NoArgsConstructor
 @Getter
 @Setter
@@ -32,11 +33,14 @@ public class Question extends BaseTime {
     @Column(columnDefinition = "TEXT", nullable = false)
     private String content;
 
-    @Column(nullable = false)
-    private Long viewCount;
+//    @Column(nullable = false)
+//    private Long viewCount = 0L;
+//
+//    @Column(nullable = false)
+//    private Long voteCount = 0L;
 
-    @Column(nullable = false)
-    private Long voteCount;
+    @OneToMany(mappedBy = "question")
+    List<QuestionTag> questionTag = new ArrayList<>();
 
 
 
@@ -48,7 +52,7 @@ public class Question extends BaseTime {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;  // Question과 User는 다대일 관계
+    private User user;
 
 
     public void addQuestionVote(QuestionVote questionVote) {
@@ -63,9 +67,16 @@ public class Question extends BaseTime {
             this.user = user;
     }
 
+
+//    public void addViewCount() {
+//        this.viewCount++;
+//    }
+
     public void addAnswerList(Answer answer) {
         this.answerList.add(answer);
     }
+
+
 
 //    public void addQuestionVoteList(QuestionVote questionVote) {
 //        this.questionVote.add(questionVote);

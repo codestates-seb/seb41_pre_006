@@ -32,10 +32,10 @@ public interface QuestionMapper {
                 questionResponseDto.setQuestionId(question.getQuestionId());
                 questionResponseDto.setTitle(question.getTitle());
                 questionResponseDto.setContent(question.getContent());
-                questionResponseDto.setViewCount(question.getViewCount());
-                questionResponseDto.setUserName(question.getUser().getName());
-                questionResponseDto.setUserId(question.getUser().getUserId());
-                questionResponseDto.setAnswerCount((long) question.getAnswerList().size());
+//                questionResponseDto.setViewCount(question.getViewCount());
+//                questionResponseDto.setUserName(question.getUser().getName());
+//                questionResponseDto.setUserId(question.getUser().getUserId());
+  //              questionResponseDto.setAnswerCount((long) question.getAnswerList().size());
                 return questionResponseDto;
         }
 }
