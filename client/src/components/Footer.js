@@ -19,7 +19,7 @@ const FooterContainer = styled.footer`
       flex: 0 0 64px;
       margin: -12px 0 32px;
       a {
-        color: hsl(210, 8%, 60%);
+        color: #9199a1;
       }
     }
     .bot-menu-container {
