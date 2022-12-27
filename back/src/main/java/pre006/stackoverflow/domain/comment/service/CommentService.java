@@ -41,7 +41,7 @@ public class CommentService {
         return commentRepository.save(findComment);
     }
 
-    public void deleteComment (long commentId) {
+    public void deleteComment (Long commentId) {
         Comment findComment = findVerifiedComment(commentId);
 
         commentRepository.delete(findComment);
@@ -49,7 +49,7 @@ public class CommentService {
 
 
 
-    private Comment findVerifiedComment(long commentId) {
+    private Comment findVerifiedComment(Long commentId) {
         Optional<Comment> optionalComment = commentRepository.findById(commentId);
         Comment findComment = optionalComment.orElseThrow(() ->
                 new NoSuchElementException("No Such Comment"));

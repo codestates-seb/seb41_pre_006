@@ -41,6 +41,6 @@ public class Answer extends BaseTime {
     private Question question;
 
     @JsonManagedReference
-    @OneToMany(mappedBy = "answer")
+    @OneToMany(mappedBy = "answer", cascade = CascadeType.REMOVE)
     private List<Comment> comments = new ArrayList<>();
 }

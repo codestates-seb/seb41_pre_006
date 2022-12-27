@@ -29,8 +29,8 @@ public class CommentController {
     }
 
     @PostMapping("/question/{userId}/{questionId}") // 질문에 대한 코멘트 추가
-    public ResponseEntity postQuestionComment(@PathVariable("userId") long userId,
-            @PathVariable("questionId") long questionId, @Valid @RequestBody CommentPostDto commentPostDto) {
+    public ResponseEntity postQuestionComment(@PathVariable("userId") Long userId,
+            @PathVariable("questionId") Long questionId, @Valid @RequestBody CommentPostDto commentPostDto) {
         Comment comment = commentService.createQuestionComment(commentMapper.QcommentPostDtoToComment(commentPostDto, userId, questionId));
 
         return new ResponseEntity<>(commentMapper.commentToCommentResponseDto(comment), HttpStatus.CREATED);
@@ -38,17 +38,17 @@ public class CommentController {
     }
 
     @PostMapping("/answer/{userId}/{answerId}") // 답변에 대한 코멘트 추가
-    public ResponseEntity postAnswerComment(@PathVariable ("userId") long userId,
-            @PathVariable("answerId") long answerId ,@Valid @RequestBody CommentPostDto commentPostDto) {
+    public ResponseEntity postAnswerComment(@PathVariable ("userId") Long userId,
+            @PathVariable("answerId") Long answerId , @Valid @RequestBody CommentPostDto commentPostDto) {
         Comment comment = commentService.createAnswerComment(commentMapper.AcommentPostDtoToComment(commentPostDto, userId, answerId));
 
         return new ResponseEntity<>(commentMapper.commentToCommentResponseDto(comment), HttpStatus.CREATED);
 
 
     }
-    @PatchMapping("/patch/{commentId}") // 코멘트 내용 변경
+    @PatchMapping("/{commentId}") // 코멘트 내용 변경
     public ResponseEntity patchComment(@Valid @RequestBody CommentPatchDto commentPatchDto,
-                                       @PathVariable("commentId") long commentId) {
+                                       @PathVariable("commentId") Long commentId) {
         commentPatchDto.setCommentId(commentId);
         Comment comment = commentService.updateComment(commentMapper.commentPatchDtoToComment(commentPatchDto));
 
@@ -57,8 +57,8 @@ public class CommentController {
 
     }
 
-    @DeleteMapping("/delete/{commentId}") // 코멘트 삭제
-    public ResponseEntity deleteComment(@PathVariable("commentId") long commentId) {
+    @DeleteMapping("/{commentId}") // 코멘트 삭제
+    public ResponseEntity deleteComment(@PathVariable("commentId") Long commentId) {
         commentService.deleteComment(commentId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 

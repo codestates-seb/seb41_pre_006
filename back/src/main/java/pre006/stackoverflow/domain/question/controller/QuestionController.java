@@ -30,7 +30,7 @@ public class QuestionController {
     }
 
     //post mapping
-    @PostMapping
+    @PostMapping()
     public ResponseEntity postQuestion( @Validated@RequestBody QuestionDto.QuestionPostDto questionPostDto) {
         Question question = questionService.createQuestion(questionMapper.questionPostDtoToEntity(questionPostDto));
         // log.info("postQuestion()");

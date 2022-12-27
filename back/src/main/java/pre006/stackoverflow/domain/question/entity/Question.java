@@ -50,10 +50,10 @@ public class Question extends BaseTime {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "question")
+    @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
     private List<Comment> comments = new ArrayList<>();
 
-    @OneToMany(mappedBy = "question")
+    @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
     List<QuestionTag> questionTag = new ArrayList<>();
 
 
