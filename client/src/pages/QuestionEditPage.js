@@ -1,9 +1,13 @@
+import styled from "styled-components";
+
+const Main = styled.section``;
+
 const QuestionEditPage = () => {
   return (
-    <section>
+    <Main>
       <h1>QuestionEditPage</h1>
       <p>글수정 페이지 demo 입니다.</p>
-    </section>
+    </Main>
   );
 };
 
