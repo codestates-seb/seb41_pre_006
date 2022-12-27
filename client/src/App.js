@@ -2,11 +2,11 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import { Reset } from "styled-reset";
 import GlobalStyle from "./styles/GlobalStyle";
-
+import styled from "styled-components";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
-import QustionsListPage from "./pages/QustionsListPage";
+import QuestionsListPage from "./pages/QuestionsListPage";
 
 import Login from "./pages/Login";
 // import LogOut from "./pages/LogOut";
@@ -23,13 +23,19 @@ import ProfilePage from "./pages/ProfilePage"; // 유저프로필페이지
 import TagsPage from "./pages/TagsPage"; // 태그페이지
 import UsersPage from "./pages/UsersPage"; // 유저페이지
 
+const Main = styled.div`
+  padding-top: 54px;
+  height: auto;
+  min-height: 100%;
+`;
+
 function App() {
   return (
     <div className="App">
       <GlobalStyle />
       <Reset />
       <Header />
-      <main>
+      <Main>
         <Routes>
           <Route path="/users/login" element={<Login />} />
           {/* <Route path="/users/logout" element={<LogOut />} /> */}
@@ -37,16 +43,16 @@ function App() {
           {/* <Route path="/users/signup/success" element={<SignupSuccess />} /> */}
           {/* <Route path="/users/signup/recovery" element={<SignupRecovery />} /> */}
           <Route path="/" element={<Home />} />
-          <Route path="/qustions/" element={<QustionsListPage />} />
+          <Route path="/questions/" element={<QuestionsListPage />} />
           <Route path="/questions/ask" element={<AskQuestion />} />
           <Route path="/questions/edit" element={<QuestionEditPage />} />
-          <Route path="/questions/edit/" element={<EditAnswerPage />} />
+          {/* <Route path="/questions/edit/" element={<EditAnswerPage />} /> */}
           <Route path="/questions/detail" element={<QuestionDetailPage />} />
-          <Route path="/pofile" element={<ProfilePage />} />
+          <Route path="/profile" element={<ProfilePage />} />
           <Route path="/tags" element={<TagsPage />} />
           <Route path="/users" element={<UsersPage />} />
         </Routes>
-      </main>
+      </Main>
       {/*
        */}
       {/* 주석 샘플 나중에 날릴게요🥹 */}

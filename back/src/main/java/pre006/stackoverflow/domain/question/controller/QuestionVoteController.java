@@ -24,7 +24,8 @@ public class QuestionVoteController {
     }
 
     @PostMapping("/{questionId}/votes")
-    public ResponseEntity voteQuestion(@PathVariable long questionId, @RequestParam(value="vote", defaultValue="0") int vote) {
+    public ResponseEntity voteQuestion(@PathVariable long questionId, @RequestParam(value = "vote", defaultValue = "0"
+    ) int vote) {
 
         QuestionVote questionVote = questionVoteService.createQuestionVote(questionId, vote);
 

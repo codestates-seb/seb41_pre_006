@@ -24,6 +24,14 @@ public class Answer extends BaseTime {
     @Column(columnDefinition = "TEXT", nullable = false)
     private String content;
 
+    private Long voteCount = 0L;
+
+    @ElementCollection
+    private List<Long> upvoteUserId = new ArrayList<>();
+
+    @ElementCollection
+    private List<Long> downvoteUserId = new ArrayList<>();
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
@@ -33,6 +41,6 @@ public class Answer extends BaseTime {
     private Question question;
 
     @JsonManagedReference
-    @OneToMany(mappedBy = "answer")
-    private List<Comment> comment = new ArrayList<>();
+    @OneToMany(mappedBy = "answer", cascade = CascadeType.REMOVE)
+    private List<Comment> comments = new ArrayList<>();
 }

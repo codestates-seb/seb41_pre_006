@@ -1,17 +1,12 @@
 package pre006.stackoverflow.domain.question.entity;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import pre006.stackoverflow.domain.audit.BaseTime;
-import pre006.stackoverflow.domain.question.dto.QuestionDto;
-import pre006.stackoverflow.domain.question.mapper.QuestionVoteMapper;
-import pre006.stackoverflow.domain.question.repository.QuestionVoteRepository;
 import pre006.stackoverflow.domain.tag.entity.Tag;
-import pre006.stackoverflow.domain.question.entity.Question;
+
 import javax.persistence.*;
-import java.util.Optional;
 
 
 @Getter

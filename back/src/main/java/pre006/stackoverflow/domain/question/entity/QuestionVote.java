@@ -22,7 +22,7 @@ public class QuestionVote {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long questionVoteId;
 
-    @Column(nullable = false)
+    @Column
     private int vote = 0;
 
     @ManyToOne
@@ -31,8 +31,8 @@ public class QuestionVote {
 
     public void addQuestion(Question question) {
         this.question = question;
-        if (this.question == null && question != null)
-            question.addQuestionVote(this);
+        // if (this.question == null && question != null)
+        //     question.addQuestionVote(this);
     }
 
 }

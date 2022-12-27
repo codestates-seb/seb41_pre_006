@@ -8,11 +8,11 @@ import javax.validation.constraints.NotEmpty;
 @Getter
 @AllArgsConstructor
 public class CommentPatchDto {
-    private long commentId;
+    private Long commentId;
     @NotEmpty
-    private String body;
+    private String content;
 
-    public void setCommentId(long commentId) {
+    public void setCommentId(Long commentId) {
         this.commentId = commentId;
     }
 }

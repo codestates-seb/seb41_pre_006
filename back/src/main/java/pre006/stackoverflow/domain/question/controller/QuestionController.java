@@ -15,38 +15,35 @@ import pre006.stackoverflow.domain.question.entity.Question;
 
 @RestController
 @Validated
-@RequestMapping("/v1/questions")
+@RequestMapping("/questions")
 @Slf4j
 public class QuestionController {
 
     private QuestionService questionService;
     private QuestionMapper questionMapper;
-
-    private UserService userService;
-
     private UserMapper userMapper;
 
     public QuestionController(QuestionService questionService, QuestionMapper questionMapper, UserService userService, UserMapper userMapper) {
         this.questionService = questionService;
         this.questionMapper = questionMapper;
-        this.userService = userService;
         this.userMapper = userMapper;
     }
 
     //post mapping
-    @PostMapping("{userId}")
-    public ResponseEntity postQuestion( @Validated@RequestBody QuestionDto.QuestionPostDto questionPostDto, @PathVariable("userId") Long userId) {
+    @PostMapping()
+    public ResponseEntity postQuestion( @Validated@RequestBody QuestionDto.QuestionPostDto questionPostDto) {
         Question question = questionService.createQuestion(questionMapper.questionPostDtoToEntity(questionPostDto));
-        log.info("postQuestion()");
+        // log.info("postQuestion()");
         return new ResponseEntity<>(questionMapper.entityToQuestionResponseDto(question), HttpStatus.CREATED);
-
     }
 
-    @PatchMapping("/{question-id}")
-    public ResponseEntity patchQuestion(@PathVariable("question-id") long questionId, @Validated@RequestBody QuestionDto.QuestionPatchDto questionPatchDto) {
+
+
+    @PatchMapping("/{questionId}")
+    public ResponseEntity patchQuestion(@PathVariable("questionId") long questionId, @Validated@RequestBody QuestionDto.QuestionPatchDto questionPatchDto) {
         questionPatchDto.setQuestionId(questionId);
         Question question = questionService.updateQuestion(questionMapper.questionPatchDtoToEntity(questionPatchDto));
-        log.info("patchQuestion()");
+        // log.info("patchQuestion()");
 
         return new ResponseEntity<>(questionMapper.entityToQuestionResponseDto(question), HttpStatus.OK);
 
@@ -54,20 +51,35 @@ public class QuestionController {
     }
 
 
-    @GetMapping("/{question-id}")
-    public ResponseEntity getQuestion(@PathVariable("question-id") long questionId) {
+    @GetMapping("/{questionId}")
+    public ResponseEntity getQuestion(@PathVariable("questionId") long questionId) {
         Question question = questionService.getQuestion(questionId);
-        log.info("getQuestion()");
+        // log.info("getQuestion()");
+        // log.info("question.commentList={}", question.getComment());
         return new ResponseEntity<>(questionMapper.entityToQuestionResponseDto(question), HttpStatus.OK);
     }
 
 
     //delete mapping
-    @DeleteMapping("/{question-id}")
-    public ResponseEntity deleteQuestion(   @PathVariable("question-id") long questionId) {
+    @DeleteMapping("/{questionId}")
+    public ResponseEntity deleteQuestion(   @PathVariable("questionId") long questionId) {
         questionService.deleteQuestion(questionId);
-        log.info("deleteQuestion()");
+        // log.info("deleteQuestion()");
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @PostMapping("/upvote/{userId}/{questionId}")
+    public ResponseEntity upVote(@PathVariable Long userId, @PathVariable Long questionId) {
+        questionService.upVote(userId, questionId);
+
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @PostMapping("/downvote/{userId}/{questionId}")
+    public ResponseEntity downVote(@PathVariable Long userId, @PathVariable Long questionId) {
+        questionService.downVote(userId, questionId);
+
+        return new ResponseEntity(HttpStatus.OK);
     }
 
 

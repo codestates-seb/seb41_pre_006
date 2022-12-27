@@ -17,23 +17,39 @@ public class QuestionVoteService {
 
     private QuestionVoteRepository questionVoteRepository;
 
-    public QuestionVoteService(QuestionRepository questionRepository, QuestionVoteRepository questionVoteRepository) {
+    private QuestionService questionService;
+
+    public QuestionVoteService(QuestionRepository questionRepository, QuestionVoteRepository questionVoteRepository , QuestionService questionService) {
         this.questionRepository = questionRepository;
         this.questionVoteRepository = questionVoteRepository;
+        this.questionService = questionService;
     }
 
     @Transactional
     public QuestionVote createQuestionVote(long questionId, int vote ) {
-        Question question = questionRepository.findById(questionId).get();
-        QuestionVote questionVote = new QuestionVote();
-        questionVote.setQuestion(question);
-        questionVote.setVote(vote);
-        questionVoteRepository.save(questionVote);
-//        question.setVoteCount(question.getVoteCount()+vote);
-        questionRepository.save(question);
-        return questionVote;
+        QuestionVote questionVote = questionVoteRepository.findByQuestion(  questionService.findVerifiedQuestion(questionId));
+
+        if(questionVote == null) {
+            QuestionVote newVote = new QuestionVote();
+            newVote.addQuestion(questionService.findVerifiedQuestion(questionId));
+            newVote.setVote(vote);
+            questionVoteRepository.save(newVote);
+            questionService.refreshVotes(questionId);
+            return newVote;
+
+        } else {
+            questionVote.setVote(vote);
+            questionVoteRepository.save(questionVote);
+            questionService.refreshVotes(questionId);
+            return questionVote;
+        }
+
     }
 
+    public int getVotes(long questionId) {
+        int votes = questionVoteRepository.findVoteValue(questionId);
+        return votes;
+    }
 
 
 

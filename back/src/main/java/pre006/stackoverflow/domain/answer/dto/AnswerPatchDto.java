@@ -2,16 +2,19 @@ package pre006.stackoverflow.domain.answer.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotEmpty;
 
 @Getter
 @AllArgsConstructor
+@NoArgsConstructor
 public class AnswerPatchDto {
-    private long answerId;
+    private Long answerId;
     @NotEmpty
     private String content;
-    public void setAnswerId(long answerId) {
+
+    public void setAnswerId(Long answerId) {
         this.answerId = answerId;
     }
 }

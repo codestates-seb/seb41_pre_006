@@ -47,7 +47,7 @@ public class UserController {
 
     @PatchMapping("/{userId}")
     public UserResponseDto patchOne(@PathVariable Long userId,
-            @Validated @PathVariable UserPatchDto userPatchDto) {
+            @RequestBody @Validated UserPatchDto userPatchDto) {
         User modifyUser = userService.modifyUser(userId, mapper.userPatchDtoToEntity(userPatchDto));
         return mapper.userToResponseDto(modifyUser);
     }
@@ -56,6 +56,6 @@ public class UserController {
     public ResponseEntity deleteUser(@PathVariable Long userId) {
         userService.deleteUser(userId);
 
-        return new ResponseEntity(HttpStatus.ACCEPTED);
+        return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 }
