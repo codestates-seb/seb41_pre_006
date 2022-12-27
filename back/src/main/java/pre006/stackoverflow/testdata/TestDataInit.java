@@ -35,16 +35,40 @@ public class TestDataInit {
                 "저는 김코딩 입니다.", "부산"));
         userController.post(new UserPostDto("hgd3@gmail.com", "박자바", "3333",
                 "저는 박자바 입니다.", "고양"));
+        userController.post(new UserPostDto("hgd3@gmail.com", "박자바", "3333",
+                "저는 김철수 입니다.", "김해"));
+        userController.post(new UserPostDto("hgd3@gmail.com", "박자바", "3333",
+                "저는 김영희 입니다.", "천안"));
 
         // 질문 등록
         questionController.postQuestion(new QuestionDto.QuestionPostDto
-                (1L, "홍길동의 첫번째 질문입니다.", "질문 내용입니다."));
+                (1L, "홍길동의 1번째 질문입니다.", "질문 내용입니다."));
         questionController.postQuestion(new QuestionDto.QuestionPostDto
-                (1L, "홍길동의 두번째 질문입니다.", "두번째 질문 내용입니다."));
+                (1L, "홍길동의 2번째 질문입니다.", "두번째 질문 내용입니다."));
         questionController.postQuestion(new QuestionDto.QuestionPostDto
                 (2L, "김코딩의 질문입니다.", "질문 내용입니다."));
         questionController.postQuestion(new QuestionDto.QuestionPostDto
                 (3L, "박자바의 질문입니다.", "질문 내용입니다."));
+        questionController.postQuestion(new QuestionDto.QuestionPostDto
+                (3L, "박자바의 2번째 질문입니다.", "질문 내용입니다."));
+        questionController.postQuestion(new QuestionDto.QuestionPostDto
+                (2L, "김코딩의 2번째 질문입니다.", "질문 내용입니다."));
+        questionController.postQuestion(new QuestionDto.QuestionPostDto
+                (2L, "김코딩의 3번째 질문입니다.", "질문 내용입니다."));
+        questionController.postQuestion(new QuestionDto.QuestionPostDto
+                (2L, "김코딩의 4번째 질문입니다.", "질문 내용입니다."));
+        questionController.postQuestion(new QuestionDto.QuestionPostDto
+                (3L, "박자바의 2번째 질문입니다.", "질문 내용입니다."));
+        questionController.postQuestion(new QuestionDto.QuestionPostDto
+                (3L, "박자바의 3번째 질문입니다.", "질문 내용입니다."));
+        questionController.postQuestion(new QuestionDto.QuestionPostDto
+                (4L, "김철수의 1번째 질문입니다.", "질문 내용입니다."));
+        questionController.postQuestion(new QuestionDto.QuestionPostDto
+                (4L, "김철수의 2번째 질문입니다.", "질문 내용입니다."));
+        questionController.postQuestion(new QuestionDto.QuestionPostDto
+                (5L, "김영희의 1번째 질문입니다.", "질문 내용입니다."));
+        questionController.postQuestion(new QuestionDto.QuestionPostDto
+                (5L, "김영희의 2번째 질문입니다.", "질문 내용입니다."));
 
         // 답변 등록
         answerController.postAnswer(1L, 2L,
