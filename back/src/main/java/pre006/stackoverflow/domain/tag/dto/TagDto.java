@@ -9,6 +9,7 @@ import pre006.stackoverflow.domain.tag.entity.Tag;
 import pre006.stackoverflow.domain.tag.repository.TagRepository;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -21,6 +22,7 @@ import static javax.persistence.FetchType.LAZY;
 public class TagDto {
 
         private Long tagId;
+        @NotBlank(message = "태그명을 입력해주세요.")
         private String tagName;
         private List<QuestionTag> questionTag = new ArrayList<>();
 

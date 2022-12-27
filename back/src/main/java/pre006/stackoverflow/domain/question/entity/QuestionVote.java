@@ -22,7 +22,7 @@ public class QuestionVote {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long questionVoteId;
 
-    @Column(nullable = false)
+    @Column
     private int vote = 0;
 
     @ManyToOne
