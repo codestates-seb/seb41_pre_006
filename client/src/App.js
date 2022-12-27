@@ -18,7 +18,7 @@ import Home from "./pages/Home";
 import QuestionDetailPage from "./pages/QuestionDetailPage"; // 글상세페이지";
 import AskQuestion from "./pages/AskQuestion"; // 글쓰기페이지;
 import QuestionEditPage from "./pages/QuestionEditPage"; // 글수정하기페이지";
-import EditAnswerPage from "./pages/EditAnswerPage"; // 답변수정하기페이지";
+// import EditAnswerPage from "./pages/EditAnswerPage"; // 답변수정하기페이지";
 import ProfilePage from "./pages/ProfilePage"; // 유저프로필페이지
 import TagsPage from "./pages/TagsPage"; // 태그페이지
 import UsersPage from "./pages/UsersPage"; // 유저페이지
