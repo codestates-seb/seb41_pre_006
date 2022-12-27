@@ -4,11 +4,16 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import pre006.stackoverflow.domain.answer.entity.Answer;
 import pre006.stackoverflow.domain.audit.BaseTime;
+import pre006.stackoverflow.domain.comment.dto.CommentResponseDto;
+import pre006.stackoverflow.domain.comment.entity.Comment;
 import pre006.stackoverflow.domain.user.dto.UserResponseDto;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
+import java.util.List;
 
 
 public class QuestionDto {
@@ -18,6 +23,8 @@ public class QuestionDto {
     @NoArgsConstructor
     @AllArgsConstructor
     public static class QuestionPostDto {
+        @NotNull
+        private Long userId;
         @NotBlank
         private String title;
         @NotBlank
@@ -45,13 +52,12 @@ public class QuestionDto {
         private String title;
         private String content;
         private Long viewCount;
-        private Long vote;
+        private Long voteCount;
         private String userName;
         private Long userId;
-        private Long answerCount;
-        private UserResponseDto user;
-        private LocalDateTime createdAt;
-        private LocalDateTime updatedAt;
+        private List<CommentResponseDto> comments;
+        private List<AResponseDto> answerList;
+        // private Long answerCount;
     }
 }
 

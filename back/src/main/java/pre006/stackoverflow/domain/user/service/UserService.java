@@ -43,7 +43,7 @@ public class UserService {
         repository.deleteById(userId);
     }
 
-    private static void updateUserInfo(User user, User findUser) {
+    private void updateUserInfo(User user, User findUser) {
         findUser.setEmail(user.getEmail());
         findUser.setPassword(user.getPassword());
         findUser.setName(user.getName());

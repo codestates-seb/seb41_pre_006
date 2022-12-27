@@ -8,10 +8,11 @@ import javax.validation.constraints.NotEmpty;
 @Getter
 @AllArgsConstructor
 public class AnswerPatchDto {
-    private long answerId;
+    private Long answerId;
     @NotEmpty
     private String content;
-    public void setAnswerId(long answerId) {
+
+    public void setAnswerId(Long answerId) {
         this.answerId = answerId;
     }
 }
