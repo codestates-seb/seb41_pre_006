@@ -9,7 +9,7 @@ const Main = styled.div`
   height: auto;
   flex-direction: column;
 `;
-const Title = styled.span`
+const Title = styled.div`
   margin-top: 50px;
   margin-bottom: 50px;
   margin-left: 30px;

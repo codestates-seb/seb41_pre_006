@@ -4,6 +4,9 @@ import styled from "styled-components";
 // import FooterLogo from '../images/FooterLogo.svg';
 
 const FooterContainer = styled.footer`
+  position: relative;
+  left: 0;
+  bottom: 0;
   width: 100%;
   background-color: hsl(210, 8%, 15%);
   color: hsl(210, 8%, 60%);
