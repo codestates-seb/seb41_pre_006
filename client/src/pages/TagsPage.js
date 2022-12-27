@@ -8,11 +8,9 @@ import { TagsTab } from "../components/Tags/TagsTab";
 const Container = styled.section`
   display: flex;
   flex-direction: row;
-  background-color: beige;
   /* position: relative; */
-  padding-top: 54px;
+  /* padding-top: 54px; */
   width: 100%;
-  background: none;
   margin: 0 auto;
 `;
 
