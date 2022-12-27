@@ -1,6 +1,7 @@
 package pre006.stackoverflow.domain.comment.mapper;
 
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
 import pre006.stackoverflow.domain.answer.entity.Answer;
 import pre006.stackoverflow.domain.comment.dto.CommentPatchDto;
@@ -16,7 +17,7 @@ public interface CommentMapper {
 
     default Comment QcommentPostDtoToComment(CommentPostDto commentPostDto, long userId, long questionId) {
         Comment comment = new Comment();
-        comment.setContent(comment.getContent());
+        comment.setContent(commentPostDto.getContent());
         User user = new User();
         user.setUserId(userId);
         Question question = new Question();
@@ -44,5 +45,7 @@ public interface CommentMapper {
 
     Comment commentPatchDtoToComment(CommentPatchDto commentPatchDto);
 
+    @Mapping(source = "user.userId", target = "userId")
+    @Mapping(source = "user.name", target = "userName")
     CommentResponseDto commentToCommentResponseDto(Comment comment);
 }

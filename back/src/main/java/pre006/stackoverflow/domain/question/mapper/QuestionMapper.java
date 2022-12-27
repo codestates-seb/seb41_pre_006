@@ -1,7 +1,12 @@
 package pre006.stackoverflow.domain.question.mapper;
 
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
+import pre006.stackoverflow.domain.answer.entity.Answer;
+import pre006.stackoverflow.domain.comment.dto.CommentResponseDto;
+import pre006.stackoverflow.domain.comment.entity.Comment;
+import pre006.stackoverflow.domain.question.dto.AResponseDto;
 import pre006.stackoverflow.domain.question.dto.QuestionDto;
 import pre006.stackoverflow.domain.question.entity.Question;
 import pre006.stackoverflow.domain.user.entity.User;
@@ -14,6 +19,10 @@ public interface QuestionMapper {
         default Question questionPostDtoToEntity(QuestionDto.QuestionPostDto questionPostDto) {
 
                 Question question = new Question();
+                // User 새로 생성해서 userId 저장
+                User user = new User();
+                user.setUserId(questionPostDto.getUserId());
+                question.setUser(user);
                 question.setTitle(questionPostDto.getTitle());
                 question.setContent(questionPostDto.getContent());
 
@@ -29,25 +38,37 @@ public interface QuestionMapper {
                 return question;
         }
 
+        @Mapping(source = "user.userId", target = "userId")
+        @Mapping(source = "user.name", target = "userName")
+        QuestionDto.QuestionResponseDto entityToQuestionResponseDto(Question question);
 
-        default QuestionDto.QuestionResponseDto entityToQuestionResponseDto(UserMapper userMapper, Question question) {
+        @Mapping(source = "user.userId", target = "userId")
+        @Mapping(source = "user.name", target = "userName")
+        AResponseDto AnswerToResponseDto(Answer answer);
 
-                QuestionDto.QuestionResponseDto questionResponseDto = new QuestionDto.QuestionResponseDto();
-                questionResponseDto.setQuestionId(question.getQuestionId());
-                questionResponseDto.setTitle(question.getTitle());
-                questionResponseDto.setContent(question.getContent());
-                questionResponseDto.setViewCount(question.getViewCount());
-                questionResponseDto.setVote(question.getVoteCount());
+        @Mapping(source = "user.userId", target = "userId")
+        @Mapping(source = "user.name", target = "userName")
+        CommentResponseDto commentToCommentResponseDto(Comment comment);
+
+
+        // default QuestionDto.QuestionResponseDto entityToQuestionResponseDto(UserMapper userMapper, Question question) {
+        //
+        //         QuestionDto.QuestionResponseDto questionResponseDto = new QuestionDto.QuestionResponseDto();
+        //         questionResponseDto.setQuestionId(question.getQuestionId());
+        //         questionResponseDto.setTitle(question.getTitle());
+        //         questionResponseDto.setContent(question.getContent());
+        //         questionResponseDto.setViewCount(question.getViewCount());
+        //         questionResponseDto.setVote(question.getVoteCount());
 //                questionResponseDto.setAnswerCount((long) question.getAnswerList().size());
-                User user = question.getUser();
-
-
-                System.out.println("유저: " + user);
-                System.out.println("유저맵퍼: " + userMapper);
-                questionResponseDto.setUser(userMapper.userToResponseDto(user));
-
-
-
-                return questionResponseDto;
-        }
+//                 User user = question.getUser();
+//
+//
+//                 System.out.println("유저: " + user);
+//                 System.out.println("유저맵퍼: " + userMapper);
+//                 questionResponseDto.setUser(userMapper.userToResponseDto(user));
+//
+//
+//
+//                 return questionResponseDto;
+//         }
 }

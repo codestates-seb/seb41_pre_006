@@ -7,8 +7,8 @@ import pre006.stackoverflow.domain.audit.BaseTime;
 @Getter
 @AllArgsConstructor
 public class AnswerResponseDto extends BaseTime {
-    private long answerId;
+    private Long answerId;
     private String content;
-    private long questionId;
+    private Long questionId;
 
 }

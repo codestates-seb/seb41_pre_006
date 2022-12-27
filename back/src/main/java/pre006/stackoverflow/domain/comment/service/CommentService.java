@@ -20,10 +20,10 @@ import java.util.Optional;
 public class CommentService {
 
     private final CommentRepository commentRepository;
-    private final QuestionRepository questionRepository;
-    private final AnswerRepository answerRepository;
-    private final QuestionService questionService;
-    private final AnswerService answerService;
+    // private final QuestionRepository questionRepository;
+    // private final AnswerRepository answerRepository;
+    // private final QuestionService questionService;
+    // private final AnswerService answerService;
 
     public Comment createQuestionComment(Comment comment) {
 

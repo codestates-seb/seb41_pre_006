@@ -13,9 +13,8 @@ import pre006.stackoverflow.domain.user.entity.User;
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface AnswerMapper {
 
-    default Answer answerPostDtoToAnswer(AnswerPostDto answerPostDto, long questionId, long userId) {
+    default Answer answerPostDtoToAnswer(AnswerPostDto answerPostDto, Long userId, Long questionId) {
         Answer answer = new Answer();
-        answer.setTitle(answerPostDto.getTitle());
         answer.setContent(answerPostDto.getContent());
         Question question = new Question();
         question.setQuestionId(questionId);

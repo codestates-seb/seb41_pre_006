@@ -28,17 +28,17 @@ public class Comment extends BaseTime {
     @Column(nullable = false)
     private String content;
 
-    @JsonBackReference // user entity 추가 필요
+    // @JsonBackReference // user entity 추가 필요
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
-    @JsonBackReference // question entity 추가 필요
+    // @JsonBackReference // question entity 추가 필요
     @ManyToOne
     @JoinColumn(name = "question_id")
     private Question question;
 
-    @JsonBackReference
+    // @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "answer_id")
     private Answer answer;

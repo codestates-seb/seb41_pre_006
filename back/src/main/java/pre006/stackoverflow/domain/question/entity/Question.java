@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import pre006.stackoverflow.domain.answer.entity.Answer;
 import pre006.stackoverflow.domain.audit.BaseTime;
+import pre006.stackoverflow.domain.comment.entity.Comment;
 import pre006.stackoverflow.domain.user.entity.User;
 
 import javax.persistence.Entity;
@@ -39,34 +40,25 @@ public class Question extends BaseTime {
     @Column(nullable = false)
     private Long voteCount = 0L;
 
-    @OneToMany(mappedBy = "question")
-    List<QuestionTag> questionTag = new ArrayList<>();
+    @ElementCollection
+    private List<Long> upvoteUserId = new ArrayList<>();
 
-
-
-    @OneToMany(mappedBy = "question")
-    List<QuestionVote> questionVote = new ArrayList<>();
-
-    @OneToMany(mappedBy = "question")
-    List<Answer> answerList = new ArrayList<>();
+    @ElementCollection
+    private List<Long> downvoteUserId = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
+    @OneToMany(mappedBy = "question")
+    private List<Comment> comments = new ArrayList<>();
 
-    public void addQuestionVote(QuestionVote questionVote) {
-        this.questionVote.add(questionVote);
-        if (questionVote.getQuestion() != this)
-            questionVote.setQuestion(this);
-    }
+    @OneToMany(mappedBy = "question")
+    List<QuestionTag> questionTag = new ArrayList<>();
 
-    public void addUser(User user) {
-        this.user = user;
-        if (this.user == null && user != null)
-            this.user = user;
-    }
 
+    @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
+    List<Answer> answerList = new ArrayList<>();
 
     public void addViewCount() {
         this.viewCount++;
@@ -77,6 +69,9 @@ public class Question extends BaseTime {
     }
 
 
+
+    // @OneToMany(mappedBy = "question")
+    // List<QuestionVote> questionVote = new ArrayList<>();
 
 //    public void addQuestionVoteList(QuestionVote questionVote) {
 //        this.questionVote.add(questionVote);

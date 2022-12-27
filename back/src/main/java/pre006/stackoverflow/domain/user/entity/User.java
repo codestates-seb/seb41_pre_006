@@ -31,10 +31,10 @@ public class User extends BaseTime {
 
     private String location;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     private List<Question> questionList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     private List<Answer> answerList = new ArrayList<>();
 
     public void addQuestionList(Question question) {

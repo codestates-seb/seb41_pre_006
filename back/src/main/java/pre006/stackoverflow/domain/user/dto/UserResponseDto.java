@@ -15,7 +15,7 @@ public class UserResponseDto {
     private String name;
     private String description;
     private String location;
-    private List<Question> questionList = new ArrayList<>();
-    private List<Answer> answerList = new ArrayList<>();
+    private List<QResponseDto> questionList = new ArrayList<>();
+    // private List<Answer> answerList = new ArrayList<>();
 
 }

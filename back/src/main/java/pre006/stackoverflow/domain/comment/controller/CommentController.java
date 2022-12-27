@@ -1,6 +1,7 @@
 package pre006.stackoverflow.domain.comment.controller;
 
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -14,6 +15,7 @@ import pre006.stackoverflow.domain.comment.service.CommentService;
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
 
+@Slf4j
 @Validated
 @RestController
 @RequestMapping("/comments")
@@ -27,17 +29,17 @@ public class CommentController {
     }
 
     @PostMapping("/question/{userId}/{questionId}") // 질문에 대한 코멘트 추가
-    public ResponseEntity postQuestionComment(@PathVariable("userId") long userId,@Valid @RequestBody CommentPostDto commentPostDto,
-                                              @PathVariable("questionId") long questionId) {
-        Comment comment = commentService.createQuestionComment(commentMapper.QcommentPostDtoToComment(commentPostDto,userId, questionId));
+    public ResponseEntity postQuestionComment(@PathVariable("userId") long userId,
+            @PathVariable("questionId") long questionId, @Valid @RequestBody CommentPostDto commentPostDto) {
+        Comment comment = commentService.createQuestionComment(commentMapper.QcommentPostDtoToComment(commentPostDto, userId, questionId));
 
         return new ResponseEntity<>(commentMapper.commentToCommentResponseDto(comment), HttpStatus.CREATED);
 
     }
 
     @PostMapping("/answer/{userId}/{answerId}") // 답변에 대한 코멘트 추가
-    public ResponseEntity postAnswerComment(@PathVariable ("userId") long userId,@Valid @RequestBody CommentPostDto commentPostDto,
-                                            @PathVariable("answerId") long answerId) {
+    public ResponseEntity postAnswerComment(@PathVariable ("userId") long userId,
+            @PathVariable("answerId") long answerId ,@Valid @RequestBody CommentPostDto commentPostDto) {
         Comment comment = commentService.createAnswerComment(commentMapper.AcommentPostDtoToComment(commentPostDto, userId, answerId));
 
         return new ResponseEntity<>(commentMapper.commentToCommentResponseDto(comment), HttpStatus.CREATED);
