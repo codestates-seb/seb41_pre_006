@@ -35,9 +35,9 @@ public class TestDataInit {
                 "저는 김코딩 입니다.", "부산"));
         userController.post(new UserPostDto("hgd3@gmail.com", "박자바", "3333",
                 "저는 박자바 입니다.", "고양"));
-        userController.post(new UserPostDto("hgd3@gmail.com", "박자바", "3333",
+        userController.post(new UserPostDto("hgd4@gmail.com", "박자바", "3333",
                 "저는 김철수 입니다.", "김해"));
-        userController.post(new UserPostDto("hgd3@gmail.com", "박자바", "3333",
+        userController.post(new UserPostDto("hgd5@gmail.com", "박자바", "3333",
                 "저는 김영희 입니다.", "천안"));
 
         // 질문 등록
