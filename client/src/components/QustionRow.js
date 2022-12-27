@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const StyledQustionRow = styled.div`
   display: flex;
@@ -39,7 +40,7 @@ const QustionStat = styled.div`
   }
 `;
 
-const QustionLink = styled.a`
+const QustionLink = styled(Link)`
   text-decoration: none;
   font-size: 0.7rem;
   display: block;
@@ -93,7 +94,9 @@ function QustionRow() {
         </QustionStat>
       </QustionStatArea>
       <QustionListArea>
-        <QustionLink>질문 타이틀 입니다.</QustionLink>
+        <QustionLink>
+          <Link to={"/questions/detail"}> 질문 타이틀 입니다.</Link>
+        </QustionLink>
         <QustionPreview>
           질문 컨텐츠 입니다. 어쩌구.. 저쩌구.....
           <br />
