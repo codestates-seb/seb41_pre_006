@@ -6,7 +6,7 @@ import AskButton from "../components/AskButton";
 
 const Container = styled.section`
   display: flex;
-  padding-top: 54px;
+  /* padding-top: 54px; */
   width: 100%;
   background: none;
   margin: 0 auto;
