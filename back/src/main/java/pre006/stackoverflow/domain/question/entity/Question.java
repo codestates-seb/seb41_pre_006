@@ -33,11 +33,11 @@ public class Question extends BaseTime {
     @Column(columnDefinition = "TEXT", nullable = false)
     private String content;
 
-//    @Column(nullable = false)
-//    private Long viewCount = 0L;
-//
-//    @Column(nullable = false)
-//    private Long voteCount = 0L;
+    @Column(nullable = false)
+    private Long viewCount = 0L;
+
+    @Column(nullable = false)
+    private Long voteCount = 0L;
 
     @OneToMany(mappedBy = "question")
     List<QuestionTag> questionTag = new ArrayList<>();
@@ -68,9 +68,9 @@ public class Question extends BaseTime {
     }
 
 
-//    public void addViewCount() {
-//        this.viewCount++;
-//    }
+    public void addViewCount() {
+        this.viewCount++;
+    }
 
     public void addAnswerList(Answer answer) {
         this.answerList.add(answer);

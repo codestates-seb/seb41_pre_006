@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import pre006.stackoverflow.domain.audit.BaseTime;
+import pre006.stackoverflow.domain.user.dto.UserResponseDto;
 
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
@@ -48,6 +49,7 @@ public class QuestionDto {
         private String userName;
         private Long userId;
         private Long answerCount;
+        private UserResponseDto user;
         private LocalDateTime createdAt;
         private LocalDateTime updatedAt;
     }

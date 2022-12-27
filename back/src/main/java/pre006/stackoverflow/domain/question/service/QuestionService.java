@@ -16,6 +16,10 @@ public class QuestionService {
 
     private final QuestionRepository questionRepository;
 
+    private QuestionVoteService questionVoteService;
+
+
+
 
 
     public Question createQuestion(Question question) {
@@ -44,11 +48,22 @@ public class QuestionService {
     public Question getQuestion(long questionId) {
 
     Question findQuestion = questionRepository.findById(questionId).get();
-   // findQuestion.setViewCount(findQuestion.getViewCount()+1);
+    findQuestion.setViewCount(findQuestion.getViewCount()+1);
     questionRepository.save(findQuestion);
     return findQuestion;
     }
 
+    public Question findVerifiedQuestion(long questionId) {
+        Optional<Question> optionalQuestion = questionRepository.findById(questionId);
+
+        return optionalQuestion.get();
+    }
+
+    public void refreshVotes(long questionId) {
+        Question question = findVerifiedQuestion(questionId);
+        question.setVoteCount((long) questionVoteService.getVotes(questionId)); //error null로 들어감
+        questionRepository.save(question);
+    }
 
 
 }
