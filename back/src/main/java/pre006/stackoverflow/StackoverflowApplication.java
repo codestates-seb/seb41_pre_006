@@ -16,10 +16,4 @@ public class StackoverflowApplication {
 		SpringApplication.run(StackoverflowApplication.class, args);
 	}
 
-	// @Bean
-	// @Profile("ssh")
-	// public TestDataInit testDataInit(UserController userController) {
-	// 	return new TestDataInit(userController);
-	// }
-
 }
