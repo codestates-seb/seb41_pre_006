@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import pre006.stackoverflow.global.customException.DuplicatedEmailException;
 
 import java.util.NoSuchElementException;
 
@@ -35,5 +36,13 @@ public class GlobalExceptionAdvice {
             return new ErrorResult("404 NOT FOUND", "No Such Data");
         }
         return new ErrorResult("404 NOT FOUND", e.getMessage());
+    }
+
+    @ResponseStatus(HttpStatus.CONFLICT)
+    @ExceptionHandler(DuplicatedEmailException.class)
+    public ErrorResult handleDuplicatedEmailException(DuplicatedEmailException e) {
+        log.info("e.getClass={}", e.getClass());
+
+        return new ErrorResult("409 Conflict", e.getMessage());
     }
 }

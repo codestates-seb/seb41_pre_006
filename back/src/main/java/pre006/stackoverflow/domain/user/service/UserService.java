@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pre006.stackoverflow.domain.user.entity.User;
 import pre006.stackoverflow.domain.user.repository.UserRepository;
+import pre006.stackoverflow.global.customException.DuplicatedEmailException;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -18,6 +19,7 @@ public class UserService {
     private final UserRepository repository;
 
     public User add(User user) {
+        verifyExistEmail(user.getEmail());
         return repository.save(user);
     }
 
@@ -35,6 +37,7 @@ public class UserService {
 
     public User modifyUser(Long userId, User user) {
         User findUser = findById(userId);
+        verifyExistEmail(user.getEmail());
         updateUserInfo(user, findUser);
         return findUser;
     }
@@ -49,6 +52,13 @@ public class UserService {
         findUser.setName(user.getName());
         findUser.setDescription(user.getDescription());
         findUser.setLocation(user.getLocation());
+    }
+
+    private void verifyExistEmail(String email) {
+        Optional<User> findUserByEmail = repository.findByEmail(email);
+        if (findUserByEmail.isPresent()) {
+            throw new DuplicatedEmailException("이미 존재하는 이메일 입니다.");
+        }
     }
 
 }

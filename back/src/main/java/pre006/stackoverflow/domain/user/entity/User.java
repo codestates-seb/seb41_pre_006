@@ -3,6 +3,7 @@ package pre006.stackoverflow.domain.user.entity;
 import lombok.Data;
 import pre006.stackoverflow.domain.answer.entity.Answer;
 import pre006.stackoverflow.domain.audit.BaseTime;
+import pre006.stackoverflow.domain.comment.entity.Comment;
 import pre006.stackoverflow.domain.question.entity.Question;
 
 import javax.persistence.*;
@@ -36,6 +37,9 @@ public class User extends BaseTime {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     private List<Answer> answerList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
+    private List<Comment> commentList = new ArrayList<>();
 
     public void addQuestionList(Question question) {
         this.questionList.add(question);

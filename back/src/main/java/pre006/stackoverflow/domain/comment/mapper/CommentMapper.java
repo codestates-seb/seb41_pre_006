@@ -15,7 +15,7 @@ import pre006.stackoverflow.domain.user.entity.User;
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface CommentMapper {
 
-    default Comment QcommentPostDtoToComment(CommentPostDto commentPostDto, long userId, long questionId) {
+    default Comment QcommentPostDtoToComment(CommentPostDto commentPostDto, Long userId, Long questionId) {
         Comment comment = new Comment();
         comment.setContent(commentPostDto.getContent());
         User user = new User();
@@ -29,7 +29,7 @@ public interface CommentMapper {
         return comment;
     }
 
-    default Comment AcommentPostDtoToComment(CommentPostDto commentPostDto, long userId, long answerId) {
+    default Comment AcommentPostDtoToComment(CommentPostDto commentPostDto, Long userId, Long answerId) {
         Comment comment = new Comment();
         comment.setContent(commentPostDto.getContent());
         User user = new User();
