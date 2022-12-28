@@ -2,13 +2,15 @@ package pre006.stackoverflow.domain.question.service;
 
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pre006.stackoverflow.domain.question.entity.Question;
-import pre006.stackoverflow.domain.question.mapper.QuestionMapper;
 import pre006.stackoverflow.domain.question.repository.QuestionRepository;
 import pre006.stackoverflow.domain.user.service.UserService;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -30,6 +32,21 @@ public class QuestionService {
         return questionRepository.save(question);
     }
 
+    public Question getQuestion(long questionId) {
+
+        Question findQuestion = questionRepository.findById(questionId).get();
+        findQuestion.setViewCount(findQuestion.getViewCount()+1);
+        return findQuestion;
+    }
+
+    public Page<Question> getQuestions(Pageable pageable) {
+        return questionRepository.findAll(pageable);
+    }
+
+    public List<Question> getAll() {
+        return questionRepository.findAll();
+    }
+
     public Question updateQuestion(Question question) {
 
         Optional<Question> questionOptional = questionRepository.findById(question.getQuestionId());
@@ -47,13 +64,6 @@ public class QuestionService {
     public void deleteQuestion(long questionId) {
         questionRepository.deleteById(questionId);
 
-    }
-
-    public Question getQuestion(long questionId) {
-
-    Question findQuestion = questionRepository.findById(questionId).get();
-    findQuestion.setViewCount(findQuestion.getViewCount()+1);
-    return findQuestion;
     }
 
     public Question findVerifiedQuestion(long questionId) {

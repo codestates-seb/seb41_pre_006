@@ -13,8 +13,28 @@ import pre006.stackoverflow.domain.user.entity.User;
 import pre006.stackoverflow.domain.user.mapper.UserMapper;
 import pre006.stackoverflow.domain.user.service.UserService;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Mapper(componentModel = "spring")
 public interface QuestionMapper {
+
+        default List<QuestionDto.QuestionPageResponseDto> questionListToPageResponseDto(List<Question> questions) {
+                return questions.stream()
+                         .map(question -> questionToPageResponseDto2(question))
+                        .collect(Collectors.toList());
+        }
+
+        @Mapping(source = "user.userId", target = "userId")
+        @Mapping(source = "user.name", target = "userName")
+        QuestionDto.QuestionPageResponseDto questionToPageResponseDto(Question question);
+
+        default QuestionDto.QuestionPageResponseDto questionToPageResponseDto2(Question question) {
+                QuestionDto.QuestionPageResponseDto dto = questionToPageResponseDto(question);
+                dto.setNumberOfAnswer(question.getAnswerList().size());
+
+                return dto;
+        }
 
         default Question questionPostDtoToEntity(QuestionDto.QuestionPostDto questionPostDto) {
 
@@ -50,25 +70,4 @@ public interface QuestionMapper {
         @Mapping(source = "user.name", target = "userName")
         CommentResponseDto commentToCommentResponseDto(Comment comment);
 
-
-        // default QuestionDto.QuestionResponseDto entityToQuestionResponseDto(UserMapper userMapper, Question question) {
-        //
-        //         QuestionDto.QuestionResponseDto questionResponseDto = new QuestionDto.QuestionResponseDto();
-        //         questionResponseDto.setQuestionId(question.getQuestionId());
-        //         questionResponseDto.setTitle(question.getTitle());
-        //         questionResponseDto.setContent(question.getContent());
-        //         questionResponseDto.setViewCount(question.getViewCount());
-        //         questionResponseDto.setVote(question.getVoteCount());
-//                questionResponseDto.setAnswerCount((long) question.getAnswerList().size());
-//                 User user = question.getUser();
-//
-//
-//                 System.out.println("유저: " + user);
-//                 System.out.println("유저맵퍼: " + userMapper);
-//                 questionResponseDto.setUser(userMapper.userToResponseDto(user));
-//
-//
-//
-//                 return questionResponseDto;
-//         }
 }

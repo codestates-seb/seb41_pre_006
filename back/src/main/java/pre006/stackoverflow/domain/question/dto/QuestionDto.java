@@ -59,5 +59,22 @@ public class QuestionDto {
         private List<AResponseDto> answerList;
         // private Long answerCount;
     }
+
+    @Getter
+    @Setter
+    @NoArgsConstructor
+    public static class QuestionPageResponseDto {
+        private Long questionId;
+        private String title;
+        private String content;
+        private Long userId;
+        private String userName;
+        private Long viewCount;
+        private Long voteCount;
+        private int numberOfAnswer = 0;
+
+        private LocalDateTime modifiedAt;
+        private LocalDateTime createdAt;
+    }
 }
 
