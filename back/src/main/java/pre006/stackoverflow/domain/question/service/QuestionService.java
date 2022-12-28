@@ -30,7 +30,8 @@ public class QuestionService {
     public Question getQuestion(long questionId) {
 
         Question findQuestion = questionRepository.findById(questionId).get();
-        findQuestion.setViewCount(findQuestion.getViewCount() + 1);
+        // JPQL 을 사용해서 viewCount가 올라갈 때 modifiedAt가 업데이트 되지 않도록 변경
+        questionRepository.updateViewCount(findQuestion.getViewCount() + 1, findQuestion.getQuestionId());
         return findQuestion;
     }
 
