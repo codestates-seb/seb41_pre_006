@@ -2,6 +2,8 @@ package pre006.stackoverflow.domain.user.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pre006.stackoverflow.domain.auth.utils.CustomAuthorityUtils;
@@ -40,7 +42,11 @@ public class UserService {
         return repository.save(user);
     }
 
-    public List<User> getUsers() {
+    public Page<User> getUsers(Pageable pageable) {
+        return repository.findAll(pageable);
+    }
+
+    public List<User> getAll() {
         return repository.findAll();
     }
 

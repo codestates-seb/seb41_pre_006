@@ -2,6 +2,9 @@ package pre006.stackoverflow.domain.question.controller;
 
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -12,6 +15,9 @@ import pre006.stackoverflow.domain.question.service.QuestionService;
 import pre006.stackoverflow.domain.user.mapper.UserMapper;
 import pre006.stackoverflow.domain.user.service.UserService;
 import pre006.stackoverflow.domain.question.entity.Question;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @Validated
@@ -37,6 +43,30 @@ public class QuestionController {
         return new ResponseEntity<>(questionMapper.entityToQuestionResponseDto(question), HttpStatus.CREATED);
     }
 
+    @GetMapping("/{questionId}")
+    public ResponseEntity getQuestion(@PathVariable("questionId") long questionId) {
+        Question question = questionService.getQuestion(questionId);
+        // log.info("getQuestion()");
+        // log.info("question.commentList={}", question.getComment());
+        return new ResponseEntity<>(questionMapper.entityToQuestionResponseDto(question), HttpStatus.OK);
+    }
+
+    @GetMapping()
+    public ResponseEntity getAll(@RequestParam(defaultValue = "-1") int page,
+                                        @RequestParam(defaultValue = "10") int size,
+                                        @RequestParam(defaultValue = "new") String sort) {
+        List<Question> questions;
+
+        if (page > 0 && size > 0) {
+            Page<Question> pageUser = questionService.getQuestions(
+                    PageRequest.of(page - 1, size, Sort.by("createdAt").descending()));
+            questions = pageUser.getContent();
+
+        } else { questions = questionService.getAll(); }
+
+        return new ResponseEntity(questionMapper.questionListToPageResponseDto(questions), HttpStatus.OK);
+    }
+
 
 
     @PatchMapping("/{questionId}")
@@ -49,16 +79,6 @@ public class QuestionController {
 
 
     }
-
-
-    @GetMapping("/{questionId}")
-    public ResponseEntity getQuestion(@PathVariable("questionId") long questionId) {
-        Question question = questionService.getQuestion(questionId);
-        // log.info("getQuestion()");
-        // log.info("question.commentList={}", question.getComment());
-        return new ResponseEntity<>(questionMapper.entityToQuestionResponseDto(question), HttpStatus.OK);
-    }
-
 
     //delete mapping
     @DeleteMapping("/{questionId}")
