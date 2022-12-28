@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import React from "react";
-// import React, { useState } from "react";
+import { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 // 해당 훅이 사용되지 않아 컴파일 문제로 잠시 주석처리해두었습니다. 💕
 
 const Main = styled.div`
@@ -97,6 +99,40 @@ const Span = styled.div`
   color: #6a737c;
 `;
 function SignupPage() {
+  //가입 버튼 함수
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    let body = {
+      email: email,
+      name: name,
+      password: password,
+      description: "",
+      location: "",
+    };
+    let config = {
+      method: "post",
+      url: "/users",
+      headers: {},
+      data: body,
+    };
+    axios(config)
+      .then((res) => {
+        if (res.status === 201) {
+          console.log(JSON.stringify(res.data));
+          console.log("성공");
+          alert("가입성공");
+        }
+      })
+      .then(navigate("/users/login"))
+      .catch((error) => {
+        console.log(error);
+        alert("이미 가입된 이메일입니다");
+      });
+  };
   return (
     <Main>
       {/*좌측 가입시 혜택 설명문 컨테이너 */}
@@ -121,17 +157,25 @@ function SignupPage() {
           </SocialButton>
         </SocialSignupContainer>
         <SignupContainer>
-          <Div>Display name</Div>
-          <Input></Input>
-          <Div>Email</Div>
-          <Input type="text"></Input>
-          <Div>Password</Div>
-          <Input type="password"></Input>
-          <Span>
-            Passwords must contain at least eight characters, including at least
-            1 letter and 1 number.
-          </Span>
-          <Button type="submit">Sign up</Button>
+          <form onSubmit={handleSubmit}>
+            <Div>Display name</Div>
+            <Input onChange={(e) => setName(e.target.value)}></Input>
+            <Div>Email</Div>
+            <Input
+              type="text"
+              onChange={(e) => setEmail(e.target.value)}
+            ></Input>
+            <Div>Password</Div>
+            <Input
+              type="password"
+              onChange={(e) => setPassword(e.target.value)}
+            ></Input>
+            <Span>
+              Passwords must contain at least eight characters, including at
+              least 1 letter and 1 number.
+            </Span>
+            <Button type="submit">Sign up</Button>
+          </form>
         </SignupContainer>
       </Explanation>
     </Main>
