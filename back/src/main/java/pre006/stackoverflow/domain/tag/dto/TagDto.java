@@ -19,22 +19,28 @@ import static javax.persistence.FetchType.LAZY;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 public class TagDto {
 
         private Long tagId;
-        @NotBlank(message = "태그명을 입력해주세요.")
         private String tagName;
-        private List<QuestionTag> questionTag = new ArrayList<>();
 
-        public TagDto(Tag tag) {
-            this.tagId = tag.getTagId();
-            this.tagName = tag.getTagName();
-            this.questionTag = tag.getQuestionTag();
+        @Getter
+        @Setter
+        @NoArgsConstructor
+        @AllArgsConstructor
+        public static class TagPostDto {
+            @NotBlank
+            private String tagName;
+
         }
 
-        public TagDto(Long tagId, String tagName, List<QuestionTag> questionTag) {
-            this.tagId = tagId;
-            this.tagName = tagName;
-            this.questionTag = questionTag;
+
+        @Getter
+        @Setter
+        @NoArgsConstructor
+        @AllArgsConstructor
+        public static class TagResponseDto extends BaseTime {
+            private Long tagId;
         }
 }

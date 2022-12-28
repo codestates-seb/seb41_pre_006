@@ -27,12 +27,15 @@ public class QuestionTag extends BaseTime {
     @JoinColumn(name = "tag_id")
     private Tag tag;
 
+
     public void addQuestion(Question question) {
         this.question = question;
     }
 
     public void addTag(Tag tag) {
         this.tag = tag;
+        if (!this.tag.getQuestionTagList().contains(this)) {
+            this.tag.addQuestionTag(this);
+        }
     }
-
 }

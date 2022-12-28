@@ -8,6 +8,7 @@ import pre006.stackoverflow.domain.answer.entity.Answer;
 import pre006.stackoverflow.domain.audit.BaseTime;
 import pre006.stackoverflow.domain.comment.dto.CommentResponseDto;
 import pre006.stackoverflow.domain.comment.entity.Comment;
+import pre006.stackoverflow.domain.tag.dto.TagDto;
 import pre006.stackoverflow.domain.user.dto.UserResponseDto;
 
 import javax.validation.constraints.NotBlank;
@@ -29,6 +30,8 @@ public class QuestionDto {
         private String title;
         @NotBlank
         private String content;
+        @NotBlank
+        private List<Long> tagId;
 
     }
 
@@ -57,6 +60,7 @@ public class QuestionDto {
         private Long userId;
         private List<CommentResponseDto> comments;
         private List<AResponseDto> answerList;
+        private List<TagDto.TagResponseDto> tagList;
         // private Long answerCount;
     }
 }

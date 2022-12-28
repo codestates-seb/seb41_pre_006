@@ -53,7 +53,7 @@ public class Question extends BaseTime {
     @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
     private List<Comment> comments = new ArrayList<>();
 
-    @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE, orphanRemoval = true)
     List<QuestionTag> questionTag = new ArrayList<>();
 
 

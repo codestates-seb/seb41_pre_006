@@ -24,11 +24,7 @@ public class TagService {
         return tagRepository.findAll();
     }
 
-    public Optional<Tag> findTag(Long tagId) {
-        return tagRepository.findByTagName(tagId);
-    }
-
-    public Tag CreateTag(Tag tag) {
+    public Tag createTag(Tag tag) {
         return tagRepository.save(tag);
     }
 

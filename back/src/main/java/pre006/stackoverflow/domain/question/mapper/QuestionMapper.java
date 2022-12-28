@@ -8,10 +8,15 @@ import pre006.stackoverflow.domain.comment.dto.CommentResponseDto;
 import pre006.stackoverflow.domain.comment.entity.Comment;
 import pre006.stackoverflow.domain.question.dto.AResponseDto;
 import pre006.stackoverflow.domain.question.dto.QuestionDto;
+import pre006.stackoverflow.domain.question.dto.QuestionTagDto;
 import pre006.stackoverflow.domain.question.entity.Question;
+import pre006.stackoverflow.domain.question.entity.QuestionTag;
+import pre006.stackoverflow.domain.tag.entity.Tag;
 import pre006.stackoverflow.domain.user.entity.User;
 import pre006.stackoverflow.domain.user.mapper.UserMapper;
 import pre006.stackoverflow.domain.user.service.UserService;
+
+import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface QuestionMapper {
@@ -23,6 +28,12 @@ public interface QuestionMapper {
                 User user = new User();
                 user.setUserId(questionPostDto.getUserId());
                 question.setUser(user);
+
+                Tag tag = new Tag();
+                QuestionTag questionTag = new QuestionTag();
+                questionTag.addTag(tag);
+
+
                 question.setTitle(questionPostDto.getTitle());
                 question.setContent(questionPostDto.getContent());
 

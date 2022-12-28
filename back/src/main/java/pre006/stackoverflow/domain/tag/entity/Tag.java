@@ -33,14 +33,14 @@ public class Tag {
     @Column(nullable = false)
     private String tagName;
 
-    @OneToMany(mappedBy = "tag")
-    private List<QuestionTag> questionTag = new ArrayList<>();
+    @OneToMany(mappedBy = "tag", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private List<QuestionTag> questionTagList = new ArrayList<>();
 
 
 
 
     public void addQuestionTag(QuestionTag questionTag) {
-        this.questionTag.add(questionTag);
+        this.questionTagList.add(questionTag);
     }
 
 
