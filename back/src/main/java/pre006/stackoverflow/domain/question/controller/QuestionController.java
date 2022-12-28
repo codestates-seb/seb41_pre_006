@@ -1,6 +1,7 @@
 package pre006.stackoverflow.domain.question.controller;
 
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -23,17 +24,11 @@ import java.util.List;
 @Validated
 @RequestMapping("/questions")
 @Slf4j
+@RequiredArgsConstructor
 public class QuestionController {
 
-    private QuestionService questionService;
-    private QuestionMapper questionMapper;
-    private UserMapper userMapper;
-
-    public QuestionController(QuestionService questionService, QuestionMapper questionMapper, UserService userService, UserMapper userMapper) {
-        this.questionService = questionService;
-        this.questionMapper = questionMapper;
-        this.userMapper = userMapper;
-    }
+    private final QuestionService questionService;
+    private final QuestionMapper questionMapper;
 
     //post mapping
     @PostMapping()
