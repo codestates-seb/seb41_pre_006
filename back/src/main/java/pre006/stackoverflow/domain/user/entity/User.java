@@ -32,6 +32,11 @@ public class User extends BaseTime {
 
     private String location;
 
+    //JWT 적용
+    @ElementCollection(fetch = FetchType.EAGER)//
+    private List<String> roles = new ArrayList<>();
+    //JWT 적용 완료
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     private List<Question> questionList = new ArrayList<>();
 
