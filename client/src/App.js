@@ -10,7 +10,7 @@ import QuestionsListPage from "./pages/QuestionsListPage";
 
 import Login from "./pages/Login";
 // import LogOut from "./pages/LogOut";
-// import SignUp from "./pages/SignUp";
+import Signup from "./pages/Signup";
 // import NotFound from "./components/NotFound";
 
 import Home from "./pages/Home";
@@ -32,14 +32,14 @@ const Main = styled.div`
 function App() {
   return (
     <div className="App">
-      <GlobalStyle />
       <Reset />
+      <GlobalStyle />
       <Header />
       <Main>
         <Routes>
           <Route path="/users/login" element={<Login />} />
           {/* <Route path="/users/logout" element={<LogOut />} /> */}
-          {/* <Route path="/users/signup" element={<SignUp />} /> */}
+          <Route path="/users/signup" element={<Signup />} />
           {/* <Route path="/users/signup/success" element={<SignupSuccess />} /> */}
           {/* <Route path="/users/signup/recovery" element={<SignupRecovery />} /> */}
           <Route path="/" element={<Home />} />
