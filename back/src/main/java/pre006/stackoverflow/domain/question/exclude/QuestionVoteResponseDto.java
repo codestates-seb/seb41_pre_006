@@ -1,4 +1,4 @@
-package pre006.stackoverflow.domain.question.dto;
+package pre006.stackoverflow.domain.question.exclude;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

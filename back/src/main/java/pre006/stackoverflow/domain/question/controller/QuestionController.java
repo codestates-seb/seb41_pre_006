@@ -1,6 +1,7 @@
 package pre006.stackoverflow.domain.question.controller;
 
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -23,17 +24,11 @@ import java.util.List;
 @Validated
 @RequestMapping("/questions")
 @Slf4j
+@RequiredArgsConstructor
 public class QuestionController {
 
-    private QuestionService questionService;
-    private QuestionMapper questionMapper;
-    private UserMapper userMapper;
-
-    public QuestionController(QuestionService questionService, QuestionMapper questionMapper, UserService userService, UserMapper userMapper) {
-        this.questionService = questionService;
-        this.questionMapper = questionMapper;
-        this.userMapper = userMapper;
-    }
+    private final QuestionService questionService;
+    private final QuestionMapper questionMapper;
 
     //post mapping
     @PostMapping()
@@ -51,6 +46,12 @@ public class QuestionController {
         return new ResponseEntity<>(questionMapper.entityToQuestionResponseDto(question), HttpStatus.OK);
     }
 
+    /**
+     * Question Paging 처리를 위한 컨트롤러 입니다.
+     * @param page 전달해 줄 page 번호를 param으로 입력받습니다. URI에 포함되지 않은 경우 default값은 -1 입니다.
+     * @param size 한페이지 담기는 Question의 개수 입니다. URI에 포함되지 않은경우 default값은 10 입니다.
+     * @param sort new, answered 등 필터 기능을 구현하기 위해 구현해 놓았습니다.
+     */
     @GetMapping()
     public ResponseEntity getAll(@RequestParam(defaultValue = "-1") int page,
                                         @RequestParam(defaultValue = "10") int size,

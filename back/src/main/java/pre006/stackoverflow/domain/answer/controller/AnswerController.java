@@ -34,7 +34,7 @@ public class AnswerController {
         return new ResponseEntity<>(answerMapper.answerToAnswerResponseDto(answer), HttpStatus.CREATED);
     }
 
-    // TODO: PathVarible로 받을 것인지 PatchDto로 받을 것인지 정해야 할듯 합니다.
+
     @PatchMapping ("/{answerId}") // 답변 수정
     public ResponseEntity patchAnswer(@PathVariable("answerId") Long answerId, @Valid @RequestBody AnswerPatchDto answerPatchDto) {
         answerPatchDto.setAnswerId(answerId);
@@ -55,6 +55,10 @@ public class AnswerController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+
+    /**
+     * 아래부터는 Vote에 관한 컨트롤러 입니다.
+     */
     @PostMapping("/upvote/{userId}/{answerId}")
     public ResponseEntity upVote(@PathVariable Long userId, @PathVariable Long answerId) {
         answerService.upVote(userId, answerId);

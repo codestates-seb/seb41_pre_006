@@ -4,9 +4,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import pre006.stackoverflow.domain.question.entity.QuestionVote;
-import pre006.stackoverflow.domain.question.mapper.QuestionVoteMapper;
-import pre006.stackoverflow.domain.question.service.QuestionVoteService;
+import pre006.stackoverflow.domain.question.exclude.QuestionVote;
+import pre006.stackoverflow.domain.question.exclude.QuestionVoteMapper;
+import pre006.stackoverflow.domain.question.exclude.QuestionVoteService;
 
 @RestController
 @Validated

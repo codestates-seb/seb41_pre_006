@@ -17,7 +17,6 @@ import java.util.Optional;
 public class AnswerService {
 
     private final AnswerRepository answerRepository;
-    private final QuestionRepository questionRepository;
     private final UserService userService;
 
     public Answer createAnswer(Answer answer) {
@@ -29,10 +28,6 @@ public class AnswerService {
         Optional.ofNullable(answer.getContent()).ifPresent(content -> findAnswer.setContent(content));
         return answerRepository.save(findAnswer);
     }
-
-//    public Answer getAnswer(Long userId, Answer answer) {
-//        return null;
-//    }
 
     public Answer findAnswer(Long answerId) {
         return findVerifiedAnswer(answerId);
