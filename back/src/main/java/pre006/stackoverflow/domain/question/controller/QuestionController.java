@@ -46,6 +46,12 @@ public class QuestionController {
         return new ResponseEntity<>(questionMapper.entityToQuestionResponseDto(question), HttpStatus.OK);
     }
 
+    /**
+     * Question Paging 처리를 위한 컨트롤러 입니다.
+     * @param page 전달해 줄 page 번호를 param으로 입력받습니다. URI에 포함되지 않은 경우 default값은 -1 입니다.
+     * @param size 한페이지 담기는 Question의 개수 입니다. URI에 포함되지 않은경우 default값은 10 입니다.
+     * @param sort new, answered 등 필터 기능을 구현하기 위해 구현해 놓았습니다.
+     */
     @GetMapping()
     public ResponseEntity getAll(@RequestParam(defaultValue = "-1") int page,
                                         @RequestParam(defaultValue = "10") int size,
