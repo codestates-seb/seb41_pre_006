@@ -19,4 +19,6 @@ public interface UserMapper {
     User userPatchDtoToEntity(UserPatchDto userPatchDto);
 
     QResponseDto questionToResponseDto(Question questions);
+
+    List<UserResponseDto> userListToResponseDto(List<User> users);
 }
