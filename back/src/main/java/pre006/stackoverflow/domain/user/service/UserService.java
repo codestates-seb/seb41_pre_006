@@ -1,8 +1,10 @@
 package pre006.stackoverflow.domain.user.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import pre006.stackoverflow.domain.auth.utils.CustomAuthorityUtils;
 import pre006.stackoverflow.domain.user.entity.User;
 import pre006.stackoverflow.domain.user.repository.UserRepository;
 import pre006.stackoverflow.global.customException.DuplicatedEmailException;
@@ -18,8 +20,23 @@ public class UserService {
 
     private final UserRepository repository;
 
+    //JWT 적용
+    private final PasswordEncoder passwordEncoder;
+    private final CustomAuthorityUtils authorityUtils;
+
     public User add(User user) {
         verifyExistEmail(user.getEmail());
+
+        //JWT 적용
+        String encryptedPassword = passwordEncoder.encode(user.getPassword());
+        user.setPassword(encryptedPassword);
+
+        List<String> roles = authorityUtils.createRoles(user.getEmail());
+        user.setRoles(roles);
+
+        User savedUser = repository.save(user);
+        // JWT 적용 완료
+
         return repository.save(user);
     }
 
