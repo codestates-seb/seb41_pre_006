@@ -2,8 +2,7 @@ import styled from "styled-components";
 
 import Nav from "../components/Nav";
 import Sidebar from "../components/Sidebar";
-import HomeHeaderRow from "../components/HomeHeaderRow";
-import QustionRow from "../components/QustionRow";
+import QuestionsList from "../components/QuestionsList";
 
 const Container = styled.section`
   display: flex;
@@ -24,26 +23,12 @@ const Wrapper = styled.div`
   margin: 32px 32px 32px 0;
 `;
 
-const Inner = styled.div`
-  width: 100%;
-  margin-right: 24px;
-  /* background-color: beige; */
-`;
-
 const Home = () => {
   return (
     <Container>
       <Nav page="/" />
       <Wrapper>
-        <Inner>
-          <HomeHeaderRow />
-          <QustionRow />
-          <QustionRow />
-          <QustionRow />
-          <QustionRow />
-          <QustionRow />
-          <QustionRow />
-        </Inner>
+        <QuestionsList />
         <Sidebar />
       </Wrapper>
     </Container>

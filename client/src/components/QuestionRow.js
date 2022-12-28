@@ -1,5 +1,8 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+// import QuestionDetailPage from "../pages/QuestionDetailPage";
+
+// import { useState } from "react";
 
 const StyledQustionRow = styled.div`
   display: flex;
@@ -79,29 +82,30 @@ const UserLink = styled.div`
   color: #0074cc;
 `;
 
-function QustionRow() {
+const QustionRow = ({ question }) => {
+  const { numberOfAnswer, voteCount, viewCount, title, content, userName } =
+    question;
   return (
     <StyledQustionRow>
       <QustionStatArea>
         <QustionStat>
-          0<span>votes</span>
+          {voteCount}
+          <span>votes</span>
         </QustionStat>
         <QustionStat>
-          3<span>answers</span>
+          {numberOfAnswer}
+          <span>answers</span>
         </QustionStat>
         <QustionStat>
-          8<span>views</span>
+          {viewCount}
+          <span>views</span>
         </QustionStat>
       </QustionStatArea>
       <QustionListArea>
         <QustionLink>
-          <Link to={"/questions/detail"}> 질문 타이틀 입니다.</Link>
+          <Link to={`/questions/detail`}>{title}</Link>
         </QustionLink>
-        <QustionPreview>
-          질문 컨텐츠 입니다. 어쩌구.. 저쩌구.....
-          <br />
-          하여튼 안돼요... 그냥 안돼요.....
-        </QustionPreview>
+        <QustionPreview>{content}</QustionPreview>
         <TagArea>
           <Tag>java</Tag>
           <Tag>react.js</Tag>
@@ -109,11 +113,11 @@ function QustionRow() {
           <Tag>literals</Tag>
         </TagArea>
         <LastUpdate>
-          <UserLink>kim coding</UserLink>1 asked 30mins ago
+          <UserLink>{userName}</UserLink>1 asked 30mins ago
         </LastUpdate>
       </QustionListArea>
     </StyledQustionRow>
   );
-}
+};
 
 export default QustionRow;
