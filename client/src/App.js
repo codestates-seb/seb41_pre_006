@@ -6,7 +6,7 @@ import styled from "styled-components";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
-import QuestionsListPage from "./pages/QuestionsListPage";
+import QuestionsListPage from "./components/QuestionsList";
 
 import Login from "./pages/Login";
 // import LogOut from "./pages/LogOut";
