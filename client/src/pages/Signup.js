@@ -1,5 +1,7 @@
 import styled from "styled-components";
-import React, { useState } from "react";
+import React from "react";
+// import React, { useState } from "react";
+// 해당 훅이 사용되지 않아 컴파일 문제로 잠시 주석처리해두었습니다. 💕
 
 const Main = styled.div`
   display: flex;
@@ -18,11 +20,11 @@ const Block = styled.div`
   flex-direction: column;
 `;
 const ExTitle = styled.span`
-  font-weight: bold;
-  font-size: 2em;
+  font-weight: 600;
+  font-size: 1.4rem;
 `;
 const ExDetail = styled.span`
-  font-size: 1.3em;
+  font-size: 0.8rem;
   margin-top: 20px;
 `;
 
@@ -34,6 +36,7 @@ const SocialSignupContainer = styled.div`
   width: 350px;
   height: 20%;
   margin-top: 100px;
+  font-size: 0.7rem;
 `;
 
 const SignupContainer = styled.div`
@@ -44,6 +47,8 @@ const SignupContainer = styled.div`
   background-color: white;
   border-radius: 5%;
   box-shadow: -1px 1px 10px 2px #dcdcdc;
+  font-size: 0.7rem;
+  font-weight: 300;
 `;
 
 const SocialButton = styled.button`
@@ -69,16 +74,18 @@ const Button = styled.button`
   font-weight: 300;
 `;
 const Input = styled.input`
+  margin-left: 35px;
   width: 80%;
   height: 10%;
-
-  margin-left: 35px;
+  padding: 8px 32px 8px 9px;
+  border: 1px solid #babfc4;
+  font-size: 16px;
+  line-height: 300;
   border-radius: 4px;
-  border-color: #dcdcdc !important;
 `;
 
 const Div = styled.div`
-  font-weight: bold;
+  font-weight: 500;
   margin-top: 30px;
   margin-bottom: 5px;
   margin-left: 35px;
@@ -86,6 +93,8 @@ const Div = styled.div`
 const Span = styled.div`
   margin: 10px 0 10px 35px;
   width: 80%;
+  font-size: 14px;
+  color: #6a737c;
 `;
 function SignupPage() {
   return (

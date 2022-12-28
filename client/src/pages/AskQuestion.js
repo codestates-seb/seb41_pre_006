@@ -5,16 +5,17 @@ import styled from "styled-components";
 
 const Main = styled.div`
   display: flex;
-  background-color: #eff0f1;
-  height: auto;
   flex-direction: column;
+  height: auto;
+  background-color: #eff0f1;
+  color: #232629;
 `;
 const Title = styled.div`
   margin-top: 50px;
   margin-bottom: 50px;
   margin-left: 30px;
   font-weight: 600;
-  font-size: 2em; ;
+  font-size: 1.4rem; ;
 `;
 const QueGuide = styled.div`
   width: 70%;
@@ -24,20 +25,24 @@ const QueGuide = styled.div`
   background-color: #e7f1fa;
   border: solid 2px #98c2e8;
   border-radius: 5px;
+  color: #3b4045;
   .title {
     font-weight: 500;
-    font-size: 1.5em;
+    font-size: 1rem;
     margin: 20px;
   }
   .step {
     margin: 20px auto 10px 20px;
-    font-size: 1.2em;
+    font-size: 1rem;
   }
   & p {
     margin-left: 20px;
+    font-size: 0.7rem;
+    line-height: 0.9rem;
   }
   & ul {
     margin-bottom: 20px;
+    font-size: 0.7rem;
   }
   & li {
     margin: 10px auto auto 40px;
@@ -52,30 +57,38 @@ const Form = styled.div`
   flex-direction: column;
   margin-left: 30px;
   margin-bottom: 30px;
+  padding: 32px;
   border: solid 2px #cccccc;
   border-radius: 6px;
   background-color: white;
   & h1 {
-    font-size: 1.2em;
-    margin: 30px auto 10px 20px;
+    font-size: 1rem;
+    margin-bottom: 8px;
   }
   & p {
-    margin: 0 auto 10px 20px;
+    margin-bottom: 8px;
+    font-size: 0.7rem;
+    font-weight: 300;
   }
   .textForm {
-    margin-left: 20px;
-    width: 90%;
+    /* margin-left: 20px; */
+    width: 100%;
     height: ${(props) => props.inHeight};
     border: solid 2px #cccccc;
     border-radius: 4px;
+    font-size: 16px;
+    line-height: 300;
+    border-radius: 4px;
+    padding: 8px;
   }
 `;
 const Tag = styled.div`
-  width: 90%;
-  margin-left: 20px;
+  width: 100%;
   display: flex;
   align-items: flex-start;
   border: solid 2px #cccccc;
+  padding: 8px;
+  /* margin-left: 20px; */
   > ul {
     display: flex;
     flex-wrap: wrap;
@@ -84,37 +97,47 @@ const Tag = styled.div`
   }
   & li {
     display: flex;
-    height: 30px;
     width: auto;
     padding: 0 8px;
+    margin-right: 8px;
+    justify-content: center;
+    align-items: center;
     border: solid 2px #5499c7;
     border-radius: 3px;
     background-color: #d6eaf8;
-    margin: 8px 8px 8px 8px;
+    /* height: 30px; */
+    /* margin: 8px 8px 8px 8px; */
     > span {
-      margin-top: 5px;
+      /* margin-top: 5px; */
       color: #5499c7;
+      font-weight: 400;
+      font-size: 0.8rem;
     }
     > .xicon {
       margin-left: 5px;
+      line-height: 24px;
     }
   }
   > input {
     flex: 1;
-    padding: 4px 0 0 10px;
     border: none;
-    height: 40px;
-    font-size: 1em;
-    margin-top: 2px;
+    font-size: 0.8rem;
+    font-weight: 300;
+    line-height: 24px;
+    /* margin-top: 2px; */
+    /* padding: 4px 0 0 10px; */
+    /* height: 40px; */
   }
 `;
 const Button = styled.button`
   background-color: #2d7fff;
-  width: 180px;
+  /* width: 180px; */
   height: 50px;
   border-radius: 4px;
   margin: auto auto 30px 30px;
   color: white;
+  font-size: 0.7rem;
+  padding: 12px 24px;
 `;
 
 function AskQuestionPage() {

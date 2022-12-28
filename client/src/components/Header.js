@@ -77,7 +77,7 @@ const LogInButton = styled(Link)`
   }
 `;
 
-const SignUpButton = styled.button`
+const SignUpButton = styled(Link)`
   padding: 0.4rem;
   background-color: #0a95ff;
   color: #fff;
@@ -110,7 +110,9 @@ const Header = () => {
         <LogInButton to={"/users/login"} className="LogInButton">
           Log in
         </LogInButton>
-        <SignUpButton className="SignUpButton">Sign up</SignUpButton>
+        <SignUpButton to={"/users/signup"} className="SignUpButton">
+          Sign up
+        </SignUpButton>
       </div>
     </StyledHeader>
   );
