@@ -18,26 +18,26 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class UserService {
 
-    private final UserRepository repository;
+    private final UserRepository userRepository;
 
     public User add(User user) {
         verifyExistEmail(user.getEmail());
-        return repository.save(user);
+        return userRepository.save(user);
     }
 
     public Page<User> getUsers(Pageable pageable) {
-        return repository.findAll(pageable);
+        return userRepository.findAll(pageable);
     }
 
     public List<User> getAll() {
-        return repository.findAll();
+        return userRepository.findAll();
     }
 
     /**
      * userId로 검색된 유저가 없으면 NoSuchElementException 발생
      */
     public User findById(Long userId) {
-        Optional<User> findUser = repository.findById(userId);
+        Optional<User> findUser = userRepository.findById(userId);
         return findUser.orElseThrow(() -> new NoSuchElementException("No Such User"));
     }
 
@@ -49,7 +49,7 @@ public class UserService {
     }
 
     public void deleteUser(Long userId) {
-        repository.deleteById(userId);
+        userRepository.deleteById(userId);
     }
 
     private void updateUserInfo(User user, User findUser) {
@@ -61,7 +61,7 @@ public class UserService {
     }
 
     private void verifyExistEmail(String email) {
-        Optional<User> findUserByEmail = repository.findByEmail(email);
+        Optional<User> findUserByEmail = userRepository.findByEmail(email);
         if (findUserByEmail.isPresent()) {
             throw new DuplicatedEmailException("이미 존재하는 이메일 입니다.");
         }

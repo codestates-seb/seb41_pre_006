@@ -1,12 +1,10 @@
-package pre006.stackoverflow.domain.question.repository;
+package pre006.stackoverflow.domain.question.exclude;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import pre006.stackoverflow.domain.question.entity.Question;
 import org.springframework.data.jpa.repository.JpaRepository;
-import pre006.stackoverflow.domain.question.entity.QuestionVote;
 
-import javax.persistence.Id;
 import java.util.List;
 
 

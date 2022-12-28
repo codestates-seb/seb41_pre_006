@@ -1,10 +1,11 @@
-package pre006.stackoverflow.domain.question.entity;
+package pre006.stackoverflow.domain.question.exclude;
 
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import pre006.stackoverflow.domain.audit.BaseTime;
+import pre006.stackoverflow.domain.question.entity.Question;
 
 import javax.persistence.*;
 import java.util.Optional;

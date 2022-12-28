@@ -11,6 +11,7 @@ import pre006.stackoverflow.domain.question.repository.QuestionRepository;
 import pre006.stackoverflow.domain.user.service.UserService;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -22,12 +23,6 @@ public class QuestionService {
     private final QuestionRepository questionRepository;
     private final UserService userService;
 
-    private QuestionVoteService questionVoteService;
-
-
-
-
-
     public Question createQuestion(Question question) {
         return questionRepository.save(question);
     }
@@ -35,7 +30,7 @@ public class QuestionService {
     public Question getQuestion(long questionId) {
 
         Question findQuestion = questionRepository.findById(questionId).get();
-        findQuestion.setViewCount(findQuestion.getViewCount()+1);
+        findQuestion.setViewCount(findQuestion.getViewCount() + 1);
         return findQuestion;
     }
 
@@ -49,15 +44,11 @@ public class QuestionService {
 
     public Question updateQuestion(Question question) {
 
-        Optional<Question> questionOptional = questionRepository.findById(question.getQuestionId());
-        if (questionOptional.isPresent()) {
-            Question question1 = questionOptional.get();
-            question1.setTitle(question.getTitle());
-            question1.setContent(question.getContent());
-            return questionRepository.save(question1);
-        }
-        return questionRepository.save(question);
+        Question findQuestion = findVerifiedQuestion(question.getQuestionId());
+        findQuestion.setTitle(question.getTitle());
+        findQuestion.setContent(question.getContent());
 
+        return findQuestion;
 
     }
 
@@ -69,14 +60,9 @@ public class QuestionService {
     public Question findVerifiedQuestion(long questionId) {
         Optional<Question> optionalQuestion = questionRepository.findById(questionId);
 
-        return optionalQuestion.get();
+        return optionalQuestion.orElseThrow(() -> new NoSuchElementException("No Such Question"));
     }
 
-    public void refreshVotes(long questionId) {
-        Question question = findVerifiedQuestion(questionId);
-        question.setVoteCount((long) questionVoteService.getVotes(questionId)); //error null로 들어감
-        questionRepository.save(question);
-    }
 
     /**
      * question Entity 안에 upvoteUserId, downvoteUserId List를 생성해 놓았습니다. <br>

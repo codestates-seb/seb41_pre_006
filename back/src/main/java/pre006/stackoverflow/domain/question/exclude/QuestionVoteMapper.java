@@ -1,8 +1,6 @@
-package pre006.stackoverflow.domain.question.mapper;
+package pre006.stackoverflow.domain.question.exclude;
 
 import org.mapstruct.Mapper;
-import pre006.stackoverflow.domain.question.dto.QuestionVoteResponseDto;
-import pre006.stackoverflow.domain.question.entity.QuestionVote;
 
 @Mapper(componentModel = "spring")
 public class QuestionVoteMapper {
