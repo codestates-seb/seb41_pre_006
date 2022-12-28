@@ -1,7 +1,7 @@
 import styled from "styled-components";
 // import { json } from "react-router-dom";
-import axios from "axios";
 import { useState, useEffect } from "react";
+import axios from "axios";
 
 // import Pagination from "react-js-pagination";
 // import { useDispatch, useSelector } from "react-redux";
@@ -19,12 +19,15 @@ const QuestionsList = () => {
 
   const LoadQuestion = () => {
     useEffect(() => {
-      axios.get("/questions").then((res) => {
-        setQuestion(res.data);
-        // console.log(question);
-        console.log(res.data);
-        // console.log(res.data[0]);
-      }).catch((error) => console.log('error : ', error));;
+      axios
+        .get("/questions")
+        .then((res) => {
+          setQuestion(res.data);
+          // console.log(question);
+          console.log(res.data);
+          // console.log(res.data[0]);
+        })
+        .catch((error) => console.log("error : ", error));
     }, []);
   };
   LoadQuestion();
