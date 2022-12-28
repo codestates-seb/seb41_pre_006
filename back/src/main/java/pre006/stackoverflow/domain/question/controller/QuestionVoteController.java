@@ -1,4 +1,4 @@
-package pre006.stackoverflow.domain.question.exclude;
+package pre006.stackoverflow.domain.question.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
