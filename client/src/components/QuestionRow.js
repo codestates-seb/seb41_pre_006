@@ -102,9 +102,7 @@ const QustionRow = ({ question }) => {
         </QustionStat>
       </QustionStatArea>
       <QustionListArea>
-        <QustionLink>
-          <Link to={`/questions/detail`}>{title}</Link>
-        </QustionLink>
+        <QustionLink to="/questions/detail">{title}</QustionLink>
         <QustionPreview>{content}</QustionPreview>
         <TagArea>
           <Tag>java</Tag>
