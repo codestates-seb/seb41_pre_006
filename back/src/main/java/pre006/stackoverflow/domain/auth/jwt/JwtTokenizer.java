@@ -20,7 +20,7 @@ import java.util.Map;
 public class JwtTokenizer {
 
     @Getter
-    @Value("abcefghijklmnopqrstuvwxyz123456")
+    @Value("temporary1111potato1111temporary1111potato")
     private String secretKey;
 
     @Getter
