@@ -35,9 +35,8 @@ const Inner = styled.div`
   height: 80%;
   margin-top: 30px;
   justify-content: center;
-  display: felx;
-  flex-direction: row;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 400px 400px;
 `;
 const PageList = styled.div`
   display: flex;
