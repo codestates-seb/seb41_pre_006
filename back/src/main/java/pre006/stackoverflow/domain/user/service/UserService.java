@@ -1,12 +1,14 @@
 package pre006.stackoverflow.domain.user.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pre006.stackoverflow.domain.auth.utils.CustomAuthorityUtils;
+import pre006.stackoverflow.domain.auth.utils.UserRegistrationApplicationEvent;
 import pre006.stackoverflow.domain.user.entity.User;
 import pre006.stackoverflow.domain.user.repository.UserRepository;
 import pre006.stackoverflow.global.customException.DuplicatedEmailException;
@@ -23,6 +25,8 @@ public class UserService {
     private final UserRepository userRepository;
 
     // JWT 적용
+
+    private final ApplicationEventPublisher publisher;
     private final PasswordEncoder passwordEncoder;
     private final CustomAuthorityUtils authorityUtils;
 
@@ -39,7 +43,10 @@ public class UserService {
         User savedUser = userRepository.save(user);
         // JWT 적용 완료
 
-        return userRepository.save(user);
+//        return userRepository.save(user);
+
+       publisher.publishEvent(new UserRegistrationApplicationEvent(savedUser));
+       return savedUser;
     }
 
     public Page<User> getUsers(Pageable pageable) {
