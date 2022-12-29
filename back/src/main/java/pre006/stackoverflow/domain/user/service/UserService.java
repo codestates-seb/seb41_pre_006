@@ -40,7 +40,7 @@ public class UserService {
         List<String> roles = authorityUtils.createRoles(user.getEmail());
         user.setRoles(roles);
 
-        // User savedUser = userRepository.save(user);
+        User savedUser = userRepository.save(user);
         // JWT 적용 완료
 
 //        return userRepository.save(user);
