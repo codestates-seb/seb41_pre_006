@@ -6,6 +6,7 @@ import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,8 +18,8 @@ public class CustomAuthorityUtils {
 
     private final List<GrantedAuthority> ADMIN_ROLES = AuthorityUtils.createAuthorityList("ROLE_ADMIN", "ROLE_USER");
     private final List<GrantedAuthority> USER_ROLES = AuthorityUtils.createAuthorityList("ROLE_USER");
-    private final List<String> ADMIN_ROLES_STRING = List.of("ADMIN", "USER");
-    private final List<String> USER_ROLES_STRING = List.of("USER");
+    private final List<String> ADMIN_ROLES_STRING = new ArrayList<>(List.of("ADMIN", "USER"));
+    private final List<String> USER_ROLES_STRING = new ArrayList<>(List.of("USER"));
 
     // Role from memory
     public List<GrantedAuthority> createAuthorities(String email) {
