@@ -29,7 +29,7 @@ public class QuestionService {
 
     public Question getQuestion(long questionId) {
 
-        Question findQuestion = questionRepository.findById(questionId).get();
+        Question findQuestion = findVerifiedQuestion(questionId);
         // JPQL 을 사용해서 viewCount가 올라갈 때 modifiedAt가 업데이트 되지 않도록 변경
         questionRepository.updateViewCount(findQuestion.getViewCount() + 1, findQuestion.getQuestionId());
         return findQuestion;
@@ -37,6 +37,14 @@ public class QuestionService {
 
     public Page<Question> getQuestions(Pageable pageable) {
         return questionRepository.findAll(pageable);
+    }
+
+    public Page<Question> getQuestionsSortedByAnswerCount(Pageable pageable) {
+        return questionRepository.findAllByAnswerCountEquals(0, pageable);
+    }
+
+    public Page<Question> getQuestionsSortedByQ(String q, Pageable pageable) {
+        return questionRepository.findAllByTitleContains(q, pageable);
     }
 
     public List<Question> getAll() {
@@ -56,6 +64,19 @@ public class QuestionService {
     public void deleteQuestion(long questionId) {
         questionRepository.deleteById(questionId);
 
+    }
+
+    /**
+     * answerCount 올리는 메서드
+     */
+    public void upAnswerCount(Long questionId) {
+        Question question = findVerifiedQuestion(questionId);
+        questionRepository.setAnswerCount(question.getAnswerCount() + 1, questionId);
+    }
+
+    public void downAnswerCount(Long questionId) {
+        Question question = findVerifiedQuestion(questionId);
+        questionRepository.setAnswerCount(question.getAnswerCount() - 1, questionId);
     }
 
     public Question findVerifiedQuestion(long questionId) {
