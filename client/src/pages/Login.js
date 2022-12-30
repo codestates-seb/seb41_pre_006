@@ -3,8 +3,13 @@
 // 1. 여러 페이지에서 동시에 사용되는 컴포넌트의 경우 components 폴더에서 관리
 // 2. 페이지 컴포넌트의 경우 pages 폴더에서 관리
 // 3. 해당 페이지 내에서만 사용하는 컴포넌트의 경우 해당 페이지 폴더 하위에서 관리하는 것이 좋음!
+import axios from "axios";
+import { useState } from "react";
 import styled from "styled-components";
-
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { getLoginStatus } from "../redux/actions/userAction";
+import useFetch from "../hooks/useFetch";
 const Main = styled.div`
   display: flex;
   background-color: #eff0f1;
@@ -63,7 +68,7 @@ const Box = styled.div`
   /* margin-top: 1.5em; */
   /* margin-left: 2em; */
 `;
-const EmailInput = styled.input`
+const Input = styled.input`
   width: 100%;
   height: 18%;
   /* margin-top: 1em; */
@@ -71,13 +76,7 @@ const EmailInput = styled.input`
   border: 1px solid #dcdcdc;
   margin-bottom: 16px;
 `;
-const PasswordInput = styled.input`
-  width: 100%;
-  height: 18%;
-  /* margin-top: 1em; */
-  border-radius: 4px;
-  border: 1px solid #dcdcdc;
-`;
+
 const Button = styled.button`
   background-color: #2d7fff;
   border: none;
@@ -103,6 +102,34 @@ const SocialButton = styled.button`
 `;
 
 function LoginPage() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const HandleSubmit = async (e) => {
+    e.preventDefault();
+    const body = {
+      username: email,
+      password: password,
+    };
+    const res = await useFetch("POST", "/login", body);
+    if (res === 200) {
+      dispatch(getLoginStatus({ isLogin: true }));
+    }
+    navigate("/");
+
+    //   axios
+    //     .post("/login", body, { withCredentials: true })
+    //     .then((res) => {
+    //       axios.defaults.headers.common[
+    //         "Authorization"
+    //       ] = `Bearer ${res.data.access_token}`;
+    //       return res.data;
+    //     })
+    //     .then(dispatch(getLoginStatus({ isLogin: true })))
+    //     .then(navigate("/"));
+  };
+
   return (
     <Main>
       <LoginContainer>
@@ -116,13 +143,20 @@ function LoginPage() {
           </SocialButton>
         </SocialLoginContainer>
         <MainLoginContainer>
-          <form>
+          <form onSubmit={HandleSubmit}>
             <Box>Email</Box>
-            <EmailInput></EmailInput>
+            <Input
+              id="id"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            ></Input>
             <Box>Password</Box>
-            <PasswordInput></PasswordInput>
-
-            <Button>Log in</Button>
+            <Input
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            ></Input>
+            <Button type="submit">Log in</Button>
           </form>
         </MainLoginContainer>
         <HelpContainer>

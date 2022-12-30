@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-
+import { useDispatch, useSelector } from "react-redux";
+import { getLoginStatus } from "../redux/actions/userAction";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faStackOverflow } from "@fortawesome/free-solid-svg-icons";
 // <FontAwesomeIcon icon={faStackOverflow} size="2x/>
@@ -77,7 +78,7 @@ const LogInButton = styled(Link)`
   }
 `;
 
-const SignUpButton = styled(Link)`
+const SignUpButton = styled.button`
   padding: 0.4rem;
   background-color: #0a95ff;
   color: #fff;
@@ -94,6 +95,17 @@ const SignUpButton = styled(Link)`
 `;
 
 const Header = () => {
+  const user = useSelector((state) => state.userReducer);
+  const dispatch = useDispatch();
+
+  // 로그아웃 핸들러
+  const logoutHandler = () => {
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("refreshToken");
+    dispatch(getLoginStatus({ isLogin: false }));
+
+    window.location.reload();
+  };
   return (
     <StyledHeader>
       <LogoLink to={"/"} className="logo">
@@ -107,9 +119,15 @@ const Header = () => {
         kimcoding
       </ProfileLink> */}
       <div>
-        <LogInButton to={"/users/login"} className="LogInButton">
-          Log in
-        </LogInButton>
+        {user.isLogin ? (
+          <LogInButton onClick={logoutHandler} className="LogInButton">
+            Log Out
+          </LogInButton>
+        ) : (
+          <LogInButton to={"/users/login"} className="LogInButton">
+            Log in
+          </LogInButton>
+        )}
         <SignUpButton to={"/users/signup"} className="SignUpButton">
           Sign up
         </SignUpButton>

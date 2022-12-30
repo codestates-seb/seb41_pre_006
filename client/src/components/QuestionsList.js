@@ -47,15 +47,12 @@ const QuestionsList = () => {
       .get(url)
       .then((res) => {
         setQuestion(res.data);
-        // console.log(question);
-        console.log(question);
-        // console.log(res.data[0]);
       })
       .catch((error) => console.log(error));
-  }, [url]);
+  }, [page]);
   // };
   // LoadQuestion();
-  // 렌더 이슈를 잡지 못했습니다. 임시 PR해둘게요 🥹
+  // 렌더 이슈를 잡지 못했습니다. 임시 PR해둘게요
 
   // 페이지 버튼 생성 함수
   const pageRender = (r, f) => {
