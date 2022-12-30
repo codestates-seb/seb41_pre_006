@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import styled from "styled-components";
 import AskButton from "./AskButton";
 // import { Wrapper } from "./Home/Sidebar/Sidebar_style";
@@ -18,6 +19,11 @@ const Conteiner = styled.div`
       font-weight: 300;
     }
   }
+  > div {
+    > span {
+      font-size: 2em;
+    }
+  }
 `;
 
 const WrapperH = styled.div`
@@ -27,7 +33,7 @@ const WrapperH = styled.div`
 
 const StyledHeader = styled.h1`
   margin-bottom: 32px;
-  font-size: 1.2rem;
+  font-size: 1.7rem;
   font-weight: 500;
 `;
 
@@ -39,12 +45,12 @@ const HomeHeaderRow = () => {
         <AskButton />
       </WrapperH>
       <div className="sort">
-        <p>0 questions</p>
+        <span>0 questions</span>
         <div className="question-sort">
-          <button onClick={""} className={""} value={"newest"}>
+          <button className={""} value={"newest"}>
             Newest
           </button>
-          <button onClick={""} className={""} value={"votes"}>
+          <button className={""} value={"votes"}>
             Votes
           </button>
         </div>
