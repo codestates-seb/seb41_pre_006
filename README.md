@@ -68,7 +68,7 @@ CRUD 기능 중심으로 구현 하였습니다.
 
 |1️⃣ 회원가입|2️⃣ 로그인|
 |:-:|:-:|
-|<img width="300" alt="회원가입" src="https://user-images.githubusercontent.com/48042650/210187105-850b2c1f-101c-4f99-be71-baf582f029b7.png">|<img width="300" alt="로그인" src="https://user-images.githubusercontent.com/48042650/210187067-72608843-8647-42be-b9ed-fb29559c1b3d.png">
+|<img width="400" alt="회원가입" src="https://user-images.githubusercontent.com/48042650/210187105-850b2c1f-101c-4f99-be71-baf582f029b7.png">|<img width="400" alt="로그인" src="https://user-images.githubusercontent.com/48042650/210187067-72608843-8647-42be-b9ed-fb29559c1b3d.png">
 
 |3️⃣ 질문 목록|4️⃣ 질문 상세|5️⃣ 질문 작성
 |:-:|:-:|:-:|
@@ -76,4 +76,4 @@ CRUD 기능 중심으로 구현 하였습니다.
 
 |6️⃣ 태그 페이지|7️⃣ 유저 페이지|
 |:-:|:-:|
-|<img width="300" alt="태그" src="https://user-images.githubusercontent.com/48042650/210187217-f0f35a30-bafd-499a-bdfe-7b14b072298a.png">|<img width="300" alt="유저" src="https://user-images.githubusercontent.com/48042650/210187240-99cb46d4-ffaf-4202-9a88-2eb0a258e3ea.png">|
+|<img width="400" alt="태그" src="https://user-images.githubusercontent.com/48042650/210187217-f0f35a30-bafd-499a-bdfe-7b14b072298a.png">|<img width="400" alt="유저" src="https://user-images.githubusercontent.com/48042650/210187240-99cb46d4-ffaf-4202-9a88-2eb0a258e3ea.png">|
