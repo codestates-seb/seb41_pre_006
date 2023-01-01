@@ -40,9 +40,9 @@ CRUD 기능 중심으로 구현 하였습니다.
 
 <img src="https://img.shields.io/badge/IntelliJIDEA-000000.svg?style=for-the-badge&logo=intellij-idea&logoColor=white"/> <img src="https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white"/>
 
-## ⚙️ 프로젝트 구조
-
--
+<!-- ## ⚙️ 프로젝트 구조
+- 배포가 어찌 될지 몰라 임시 주석 처리 해두겠습니다.
+- -->
 
 ## 📑 문서
 
@@ -65,3 +65,15 @@ CRUD 기능 중심으로 구현 하였습니다.
 |   🎉 init   |    프로젝트 시작에 대한 커밋    |
 
 ## 🖥️ 화면
+
+|1️⃣ 회원가입|2️⃣ 로그인|
+|:-:|:-:|
+|<img width="300" alt="회원가입" src="https://user-images.githubusercontent.com/48042650/210187105-850b2c1f-101c-4f99-be71-baf582f029b7.png">|<img width="300" alt="로그인" src="https://user-images.githubusercontent.com/48042650/210187067-72608843-8647-42be-b9ed-fb29559c1b3d.png">
+
+|3️⃣ 질문 목록|4️⃣ 질문 상세|5️⃣ 질문 작성
+|:-:|:-:|:-:|
+|<img width="300" alt="질문 목록" src="https://user-images.githubusercontent.com/48042650/210187148-c96d286e-701f-49d7-93a8-af42fff39ff8.png">|<img width="300" alt="질문상세" src="https://user-images.githubusercontent.com/48042650/210187197-815b8ae3-3f01-44c7-9986-9c6f4932cc06.png">|<img width="300" alt="질문 작성" src="https://user-images.githubusercontent.com/48042650/210187164-0b75b062-a3d2-48eb-9255-6d00a4398b96.png">|<img width="300" alt="" src="">
+
+|6️⃣ 태그 페이지|7️⃣ 유저 페이지|
+|:-:|:-:|
+|<img width="300" alt="태그" src="https://user-images.githubusercontent.com/48042650/210187217-f0f35a30-bafd-499a-bdfe-7b14b072298a.png">|<img width="300" alt="유저" src="https://user-images.githubusercontent.com/48042650/210187240-99cb46d4-ffaf-4202-9a88-2eb0a258e3ea.png">|
