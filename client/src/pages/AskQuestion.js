@@ -159,7 +159,7 @@ function AskQuestionPage() {
     setTags(filtering);
   };
   //↓ 질문 타이틀, 컨텐츠
-  const [userId, setUserId] = useState("14");
+  const [userId, setUserId] = useState("4");
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const navigate = useNavigate();

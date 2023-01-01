@@ -60,8 +60,7 @@ width:100%
 height: auto;
 border: 1px solid lightgray;
 border-radius: 5px;
-background-color: white;
- 
+background-color: white; 
 
  .content{margin: 30px auto 10px 0;
 font-size: 1.3em;}
@@ -71,6 +70,25 @@ font-size: 1.3em;}
   margin: 30px auto 50px 0;
   > div { padding-top:20px; }
  }
+`;
+const Input = styled.input`
+  border: solid 1px lightgray;
+  width: 100%;
+  height: 200px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+`;
+const Button = styled.button`
+  background-color: #2d7fff;
+  /* width: 180px; */
+  height: 40px;
+  border-radius: 4px;
+  color: white;
+  font-size: 0.7rem;
+  padding: 12px 24px;
+  &:hover {
+    background-color: #cde9fe;
+  }
 `;
 
 // demo components 레이아웃용 데모 스타일 입니다.
@@ -107,7 +125,21 @@ const QuestionDetailPage = () => {
     });
   }, []);
 
-  // 답변 리스트 element 생성할 함수
+  // 답변 제출 함수
+  const [newanswer, setNewAnswer] = useState("");
+  const handleSubmit = (e) => {
+    let url = `/answers/3/${params.num}`;
+    let body = {
+      content: newanswer,
+    };
+    let config = {
+      method: "post",
+      url: url,
+      headers: {},
+      data: body,
+    };
+    axios(config).then(alert("답변이 등록되었습니다"));
+  };
 
   return (
     <Container>
@@ -142,6 +174,13 @@ const QuestionDetailPage = () => {
                   <div className="content">{el.content}</div>
                 </div>
               ))}
+            </Div>
+            <Div className="answerform">
+              <span>Your Answer</span>
+              <form onSubmit={handleSubmit}>
+                <Input onChange={(e) => setNewAnswer(e.target.value)}></Input>
+                <Button type="submit">Post Your Answer</Button>
+              </form>
             </Div>
           </Inner>
           <Sidebar />
