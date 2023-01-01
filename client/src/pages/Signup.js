@@ -98,7 +98,7 @@ const Span = styled.div`
   font-size: 14px;
   color: #6a737c;
 `;
-function SignupPage() {
+function Signup() {
   //가입 버튼 함수
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -182,4 +182,4 @@ function SignupPage() {
   );
 }
 
-export default SignupPage;
+export default Signup;
