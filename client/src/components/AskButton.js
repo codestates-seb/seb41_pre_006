@@ -22,11 +22,7 @@ const Button = styled(Link)`
 `;
 
 const AskButton = () => {
-  return (
-    <Button>
-      <Link to={"/questions/ask"}>Ask&nbsp;Qustion</Link>
-    </Button>
-  );
+  return <Button to={"/questions/ask"}>Ask question</Button>;
 };
 
 export default AskButton;

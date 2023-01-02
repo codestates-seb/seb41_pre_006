@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import pre006.stackoverflow.domain.answer.entity.Answer;
 import pre006.stackoverflow.domain.answer.repository.AnswerRepository;
 import pre006.stackoverflow.domain.question.repository.QuestionRepository;
+import pre006.stackoverflow.domain.question.service.QuestionService;
 import pre006.stackoverflow.domain.user.service.UserService;
 
 import java.util.NoSuchElementException;
@@ -18,8 +19,10 @@ public class AnswerService {
 
     private final AnswerRepository answerRepository;
     private final UserService userService;
+    private final QuestionService questionService;
 
     public Answer createAnswer(Answer answer) {
+        questionService.upAnswerCount(answer.getQuestion().getQuestionId());
         return answerRepository.save(answer);
     }
 
@@ -35,8 +38,8 @@ public class AnswerService {
 
     public void deleteAnswer(Long answerId) {
         Answer findAnswer = findVerifiedAnswer(answerId);
-
         answerRepository.delete(findAnswer);
+        questionService.downAnswerCount(findAnswer.getQuestion().getQuestionId());
     }
 
     private Answer findVerifiedAnswer(Long answerId) {
