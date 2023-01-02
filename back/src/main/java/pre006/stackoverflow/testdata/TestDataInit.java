@@ -49,7 +49,6 @@ public class TestDataInit {
         userController.post(new UserPostDto("hgd5@gmail.com", "박자바", "3333",
                 "저는 김영희 입니다.", "천안"));
 
-<<<<<<< Updated upstream
         // 태그 등록
         tagController.postTag(new TagDto.TagPostDto("java"));
         tagController.postTag(new TagDto.TagPostDto("spring"));
