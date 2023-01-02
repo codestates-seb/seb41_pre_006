@@ -18,7 +18,7 @@ import pre006.stackoverflow.domain.user.dto.UserPostDto;
 @Slf4j
 @RequiredArgsConstructor
 @Component
-//@Profile({"ssh","jm", "dev"})
+@Profile({"ssh","jm", "dev"})
 public class TestDataInit {
     private final UserController userController;
     private final QuestionController questionController;
