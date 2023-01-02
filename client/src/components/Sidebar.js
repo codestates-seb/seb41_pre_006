@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const S_SideBar = styled.div`
+const SSideBar = styled.div`
   font-size: 14px;
   margin-left: 24px;
   float: right;
@@ -8,7 +8,7 @@ const S_SideBar = styled.div`
   margin: 0 0 15px;
 `;
 
-const S_SideBarWidget = styled.div`
+const SSideBarWidget = styled.div`
   margin-bottom: 16px;
   border-color: hsl(47, 65%, 84%);
   background-color: hsl(47, 87%, 94%);
@@ -16,7 +16,7 @@ const S_SideBarWidget = styled.div`
   border-radius: 3px;
 `;
 
-const S_SideHead = styled.li`
+const SSideHead = styled.li`
   border-color: hsl(47, 65%, 84%);
   background-color: hsl(47, 83%, 91%);
   font-size: 12px;
@@ -29,13 +29,13 @@ const S_SideHead = styled.li`
   padding: 12px 15px;
 `;
 
-const S_SideItem = styled.li`
+const SSideItem = styled.li`
   display: flex !important;
   padding: 0 16px;
   margin: 12px 0;
 `;
 
-const S_ItemShrink = styled.div`
+const SItemShrink = styled.div`
   flex-shrink: 0 !important;
   flex-basis: 8.33333333%;
   padding-top: 1px;
@@ -44,12 +44,12 @@ const S_ItemShrink = styled.div`
   }
 `;
 
-const S_ItemWord = styled.div`
+const SItemWord = styled.div`
   min-width: 0 !important;
   overflow-wrap: break-word !important;
 `;
 
-const S_FaviconStack = styled.div`
+const SFaviconStack = styled.div`
   display: inline-block;
   background-position: 0 -6120px;
   &.flow {
@@ -63,7 +63,7 @@ const S_FaviconStack = styled.div`
   background-image: url("https://cdn.sstatic.net/Img/favicons-sprite16.png?v=22475cccbf39");
 `;
 
-const S_SideBarWidgetReg = styled.div`
+const SSideBarWidgetReg = styled.div`
   word-wrap: break-word;
   margin-bottom: 16px !important;
   position: relative;
@@ -106,7 +106,7 @@ const S_SideBarWidgetReg = styled.div`
   }
 `;
 
-const S_SideBarWidget_Content = styled.div`
+const SSideBarWidgetContent = styled.div`
   display: flex;
   flex-direction: column !important;
   padding: 16px 15px;
@@ -116,7 +116,7 @@ const S_SideBarWidget_Content = styled.div`
   border-radius: 3px;
 `;
 
-const S_ShowAddWatch = styled.div`
+const SShowAddWatch = styled.div`
   display: flex !important;
   text-align: center !important;
   margin-left: auto !important;
@@ -164,12 +164,12 @@ const S_ShowAddWatch = styled.div`
 
 function SideBar() {
   return (
-    <S_SideBar>
-      <S_SideBarWidget>
+    <SSideBar>
+      <SSideBarWidget>
         <ul>
-          <S_SideHead>The Overflow Blog</S_SideHead>
-          <S_SideItem>
-            <S_ItemShrink>
+          <SSideHead>The Overflow Blog</SSideHead>
+          <SSideItem>
+            <SItemShrink>
               <svg
                 aria-hidden="true"
                 width="14"
@@ -178,16 +178,16 @@ function SideBar() {
               >
                 <path d="m11.1 1.71 1.13 1.12c.2.2.2.51 0 .71L11.1 4.7 9.21 2.86l1.17-1.15c.2-.2.51-.2.71 0ZM2 10.12l6.37-6.43 1.88 1.88L3.88 12H2v-1.88Z"></path>
               </svg>
-            </S_ItemShrink>
-            <S_ItemWord>
+            </SItemShrink>
+            <SItemWord>
               <a href="https://stackoverflow.blog/2022/10/25/a-flight-simulator-for-developers-to-practice-real-world-challenges-and-surprises-ep-500/?cb=1">
                 A flight simulator for developers to practice real world
                 challenges and...
               </a>
-            </S_ItemWord>
-          </S_SideItem>
-          <S_SideItem>
-            <S_ItemShrink>
+            </SItemWord>
+          </SSideItem>
+          <SSideItem>
+            <SItemShrink>
               <svg
                 aria-hidden="true"
                 width="14"
@@ -196,91 +196,91 @@ function SideBar() {
               >
                 <path d="m11.1 1.71 1.13 1.12c.2.2.2.51 0 .71L11.1 4.7 9.21 2.86l1.17-1.15c.2-.2.51-.2.71 0ZM2 10.12l6.37-6.43 1.88 1.88L3.88 12H2v-1.88Z"></path>
               </svg>
-            </S_ItemShrink>
-            <S_ItemWord>
+            </SItemShrink>
+            <SItemWord>
               <a href="https://stackoverflow.blog/2022/10/25/a-flight-simulator-for-developers-to-practice-real-world-challenges-and-surprises-ep-500/?cb=1">
                 Goodbye Webpack, hello Turbopack! The big news from today’s
                 Next.JS conference
               </a>
-            </S_ItemWord>
-          </S_SideItem>
-          <S_SideHead>Featured on Meta</S_SideHead>
-          <S_SideItem>
-            <S_ItemShrink>
-              <S_FaviconStack></S_FaviconStack>
-            </S_ItemShrink>
-            <S_ItemWord>
+            </SItemWord>
+          </SSideItem>
+          <SSideHead>Featured on Meta</SSideHead>
+          <SSideItem>
+            <SItemShrink>
+              <SFaviconStack></SFaviconStack>
+            </SItemShrink>
+            <SItemWord>
               <a href="https://stackoverflow.blog/2022/10/25/a-flight-simulator-for-developers-to-practice-real-world-challenges-and-surprises-ep-500/?cb=1">
                 The 2022 Community-a-thon has begun!
               </a>
-            </S_ItemWord>
-          </S_SideItem>
-          <S_SideItem>
-            <S_ItemShrink>
-              <S_FaviconStack></S_FaviconStack>
-            </S_ItemShrink>
-            <S_ItemWord>
+            </SItemWord>
+          </SSideItem>
+          <SSideItem>
+            <SItemShrink>
+              <SFaviconStack></SFaviconStack>
+            </SItemShrink>
+            <SItemWord>
               <a href="https://stackoverflow.blog/2022/10/25/a-flight-simulator-for-developers-to-practice-real-world-challenges-and-surprises-ep-500/?cb=1">
                 Mobile app infrastructure being decommissioned
               </a>
-            </S_ItemWord>
-          </S_SideItem>
-          <S_SideItem>
-            <S_ItemShrink>
-              <S_FaviconStack className="flow"></S_FaviconStack>
-            </S_ItemShrink>
-            <S_ItemWord>
+            </SItemWord>
+          </SSideItem>
+          <SSideItem>
+            <SItemShrink>
+              <SFaviconStack className="flow"></SFaviconStack>
+            </SItemShrink>
+            <SItemWord>
               <a href="https://stackoverflow.blog/2022/10/25/a-flight-simulator-for-developers-to-practice-real-world-challenges-and-surprises-ep-500/?cb=1">
                 Staging Ground Workflow: Canned Comments
               </a>
-            </S_ItemWord>
-          </S_SideItem>
-          <S_SideItem>
-            <S_ItemShrink>
-              <S_FaviconStack className="flow"></S_FaviconStack>
-            </S_ItemShrink>
-            <S_ItemWord>
+            </SItemWord>
+          </SSideItem>
+          <SSideItem>
+            <SItemShrink>
+              <SFaviconStack className="flow"></SFaviconStack>
+            </SItemShrink>
+            <SItemWord>
               <a href="https://stackoverflow.blog/2022/10/25/a-flight-simulator-for-developers-to-practice-real-world-challenges-and-surprises-ep-500/?cb=1">
                 The Ask Wizard (2022) has graduated
               </a>
-            </S_ItemWord>
-          </S_SideItem>
-          <S_SideHead>Hot Meta Posts</S_SideHead>
-          <S_SideItem>
-            <S_ItemShrink>
+            </SItemWord>
+          </SSideItem>
+          <SSideHead>Hot Meta Posts</SSideHead>
+          <SSideItem>
+            <SItemShrink>
               <span>10</span>
-            </S_ItemShrink>
-            <S_ItemWord>
+            </SItemShrink>
+            <SItemWord>
               <a href="https://stackoverflow.blog/2022/10/25/a-flight-simulator-for-developers-to-practice-real-world-challenges-and-surprises-ep-500/?cb=1">
                 Announcing the Content Discovery initiative
               </a>
-            </S_ItemWord>
-          </S_SideItem>
-          <S_SideItem>
-            <S_ItemShrink>
+            </SItemWord>
+          </SSideItem>
+          <SSideItem>
+            <SItemShrink>
               <span>21</span>
-            </S_ItemShrink>
-            <S_ItemWord>
+            </SItemShrink>
+            <SItemWord>
               <a href="https://stackoverflow.blog/2022/10/25/a-flight-simulator-for-developers-to-practice-real-world-challenges-and-surprises-ep-500/?cb=1">
                 A/B testing: moving Related Questions higher on question pages
               </a>
-            </S_ItemWord>
-          </S_SideItem>
+            </SItemWord>
+          </SSideItem>
         </ul>
-      </S_SideBarWidget>
-      <S_SideBarWidgetReg>
+      </SSideBarWidget>
+      <SSideBarWidgetReg>
         <h2>Custom Filters</h2>
         <ul>
           <li>
             <a href="/">Create a custom filter</a>
           </li>
         </ul>
-      </S_SideBarWidgetReg>
+      </SSideBarWidgetReg>
       <div>
-        <S_SideBarWidgetReg>
+        <SSideBarWidgetReg>
           <h2>Watched Tags </h2>
-          <S_SideBarWidget_Content>
-            <S_ShowAddWatch>
+          <SSideBarWidgetContent>
+            <SShowAddWatch>
               <div>
                 <svg
                   aria-hidden="true"
@@ -307,11 +307,11 @@ function SideBar() {
                 </svg>
                 Watch a tag
               </a>
-            </S_ShowAddWatch>
-          </S_SideBarWidget_Content>
-        </S_SideBarWidgetReg>
+            </SShowAddWatch>
+          </SSideBarWidgetContent>
+        </SSideBarWidgetReg>
       </div>
-    </S_SideBar>
+    </SSideBar>
   );
 }
 

@@ -43,7 +43,7 @@ const QustionStat = styled.div`
   }
 `;
 
-const QustionLink = styled(Link)`
+const QustionLink = styled.div`
   text-decoration: none;
   font-size: 0.7rem;
   display: block;
@@ -82,9 +82,10 @@ const UserLink = styled.div`
   color: #0074cc;
 `;
 
-const QustionRow = ({ question }) => {
+const QuestionRow = ({ question }) => {
   const { numberOfAnswer, voteCount, viewCount, title, content, userName } =
     question;
+  const num = question.questionId;
   return (
     <StyledQustionRow>
       <QustionStatArea>
@@ -103,7 +104,7 @@ const QustionRow = ({ question }) => {
       </QustionStatArea>
       <QustionListArea>
         <QustionLink>
-          <Link to={`/questions/detail`}>{title}</Link>
+          <Link to={`/questions/detail/${num}`}>{title}</Link>
         </QustionLink>
         <QustionPreview>{content}</QustionPreview>
         <TagArea>
@@ -120,4 +121,4 @@ const QustionRow = ({ question }) => {
   );
 };
 
-export default QustionRow;
+export default QuestionRow;

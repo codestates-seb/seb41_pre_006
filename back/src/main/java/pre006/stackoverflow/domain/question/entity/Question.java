@@ -46,6 +46,7 @@ public class Question extends BaseTime {
     @ElementCollection
     private List<Long> downvoteUserId = new ArrayList<>();
 
+    private int answerCount;
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
@@ -68,7 +69,9 @@ public class Question extends BaseTime {
         this.answerList.add(answer);
     }
 
-
+    public void setAnswerList(List<Answer> answerList) {
+        this.answerList = answerList;
+    }
 
     // @OneToMany(mappedBy = "question")
     // List<QuestionVote> questionVote = new ArrayList<>();

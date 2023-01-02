@@ -1,6 +1,7 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-
+import axios from "axios";
 // 태그는 TagList에 배열로 저장됨
 
 const Main = styled.div`
@@ -50,7 +51,7 @@ const QueGuide = styled.div`
   }
 `;
 
-const Form = styled.div`
+const Div = styled.div`
   width: 70%;
   height: ${(props) => props.height};
   display: flex;
@@ -141,99 +142,128 @@ const Button = styled.button`
 `;
 
 function AskQuestionPage() {
+  // 1. 각 폼에 있는 value state에 저장
+  // 2. 각 state 모아서 전송용 데이터로 만들기
+  // 3. 전송
+  // 로그인 기능 미구현 상태이므로 계정 아이디는 우선 14로 고정
+  // ↓ 태그 관련 함수
   const TagList = [];
   const [tags, setTags] = useState(TagList);
-
   const addTags = (e) => {
     if (e.length !== 0) {
       setTags([...tags, e]);
     }
   };
-
   const removeTags = (e) => {
     let filtering = tags.filter((el, index) => index !== e);
     setTags(filtering);
   };
+  //↓ 질문 타이틀, 컨텐츠
+  const [userId, setUserId] = useState("4");
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+  const navigate = useNavigate();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    let body = {
+      userId: userId,
+      title: title,
+      content: content,
+    };
+    let config = {
+      method: "post",
+      url: "/questions",
+      headers: {},
+      data: body,
+    };
 
+    axios(config)
+      .then((res) => {
+        console.log(res.data);
+        alert("질문이 등록되었습니다");
+      })
+      .then(navigate("/"))
+      .catch((error) => console.log(error));
+  };
   return (
     <Main>
-      <Title>Ask a public question</Title>
-      <QueGuide>
-        <p className="title">Writing a good question</p>
-        <p>
-          You’re ready to ask a programming-related question and this form will
-          help guide you through the process.
-        </p>
-        <p>
-          Looking to ask a non-programming question? See the topics here to find
-          a relevant site.
-        </p>
-        <p className="step">Steps</p>
-        <ul>
-          <li>Summarize your problem in a one-line title.</li>
-          <li>Describe your problem in more detail.</li>
-          <li>Describe what you tried and what you expected to happen.</li>
-          <li>
-            Add “tags” which help surface your question to members of the
-            community.
-          </li>
-          <li>Review your question and post it to the site.</li>
-        </ul>
-      </QueGuide>
-      <Form height="150px" inHeight="40px">
-        <h1>Title</h1>
-        <p>
-          Be specific and imagine you’re asking a question to another person.
-        </p>
-        <input
-          className="textForm"
-          placeholder="e.g. Is there an R function for fiding the index of an element in a vector?"
-        ></input>
-      </Form>
-      <Form height="350px" inHeight="230px">
-        <h1>What are the details of your problem?</h1>
-        <p>Introduce the problem and expand on what you put in the title. </p>
-        <input className="textForm" height="200px"></input>
-      </Form>
-      <Form height="350px" inHeight="230px">
-        <h1>What did you try and what were you expecting?</h1>
-        <p>
-          Describe what you tried, what you expected to happen, and what
-          actually resulted.
-        </p>
-        <input className="textForm"></input>
-      </Form>
-      <Form height="160px" inHeight="40px">
-        <h1>Tags</h1>
-        <p>
-          Add up to 5 tags to describe what your question is about. Start typing
-          to see suggestions.
-        </p>
-        <Tag>
+      <form onSubmit={handleSubmit}>
+        <Title>Ask a public question</Title>
+        <QueGuide>
+          <p className="title">Writing a good question</p>
+          <p>
+            You’re ready to ask a programming-related question and this form
+            will help guide you through the process.
+          </p>
+          <p>
+            Looking to ask a non-programming question? See the topics here to
+            find a relevant site.
+          </p>
+          <p className="step">Steps</p>
           <ul>
-            {tags.map((tag, index) => (
-              <li key={index}>
-                <span>{tag}</span>
-                <span className="xicon" onClick={() => removeTags(index)}>
-                  x
-                </span>
-              </li>
-            ))}
+            <li>Summarize your problem in a one-line title.</li>
+            <li>Describe your problem in more detail.</li>
+            <li>Describe what you tried and what you expected to happen.</li>
+            <li>
+              Add “tags” which help surface your question to members of the
+              community.
+            </li>
+            <li>Review your question and post it to the site.</li>
           </ul>
+        </QueGuide>
+        <Div height="150px" inHeight="40px">
+          <h1>Title</h1>
+          <p>
+            Be specific and imagine you’re asking a question to another person.
+          </p>
           <input
-            placeholder="e.g. (asp.net wordpress mongodb)"
-            className="tag-input"
-            onKeyUp={(e) => {
-              if (e.key === "Enter") {
-                addTags(e.target.value);
-                e.target.value = null;
-              } else if (e.key === "Backspace") {
-              }
-            }}
+            onChange={(e) => setTitle(e.target.value)}
+            className="textForm"
+            placeholder="e.g. Is there an R function for fiding the index of an element in a vector?"
           ></input>
-        </Tag>
-      </Form>
-      <Button>Review your question</Button>
+        </Div>
+        <Div height="350px" inHeight="230px">
+          <h1>What are the details of your problem?</h1>
+          <p>Introduce the problem and expand on what you put in the title. </p>
+          <input
+            onChange={(e) => setContent(e.target.value)}
+            className="textForm"
+            height="200px"
+          ></input>
+        </Div>
+
+        <Div height="160px" inHeight="40px">
+          <h1>Tags</h1>
+          <p>
+            Add up to 5 tags to describe what your question is about. Start
+            typing to see suggestions.
+          </p>
+          <Tag>
+            <ul>
+              {tags.map((tag, index) => (
+                <li key={index}>
+                  <span>{tag}</span>
+                  <span className="xicon" onClick={() => removeTags(index)}>
+                    x
+                  </span>
+                </li>
+              ))}
+            </ul>
+            <input
+              placeholder="e.g. (asp.net wordpress mongodb)"
+              className="tag-input"
+              onKeyUp={(e) => {
+                if (e.key === "Enter") {
+                  addTags(e.target.value);
+                  e.target.value = null;
+                } else if (e.key === "Backspace") {
+                }
+              }}
+            ></input>
+          </Tag>
+        </Div>
+        <Button type="submit">Review your question</Button>
+      </form>
     </Main>
   );
 }
